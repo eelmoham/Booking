@@ -24,7 +24,6 @@ export default function RootLayout({ children }: {
                     <div className='md:w-[1200px] w-full md:h-[50%] h-full m-auto border flex justify-between bg-[#f3f3f3] rounded-xl p-1'>
                         <Steps />
                         <div className='overflow-auto w-full'>
-
                             {children}
                         </div>
                     </div>

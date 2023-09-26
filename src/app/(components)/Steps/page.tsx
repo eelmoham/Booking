@@ -3,7 +3,7 @@ import "./Steps.css";
 
 const Steps = () => {
     return (
-        <div className=" rounded-lg w-[20%] md:w-[350px] flex justify-center items-center bg-[#000000] p-1">
+        <div className=" overflow-auto rounded-lg w-[20%] md:w-[350px] flex justify-center items-center bg-[#000000] p-1">
             <div className="flex flex-col my-auto">
                 <Link
                   href='Packs'
@@ -15,7 +15,7 @@ const Steps = () => {
                     <div className=" flex flex-col h-full">
                         <span className=" flex flex-col items-center justify-center w-8 h-8 bg-green-200 rounded-full">
                             <svg className="w-3.5 h-3.5 text-green-500 dark:text-green-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5" />
+                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5.917 5.724 10.5 15 1.5" />
                             </svg>
                         </span>
                         <div className=" bg-[#bbf7d0] w-1 md:h-20 h-10 self-center" ></div>
