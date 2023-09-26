@@ -15,11 +15,12 @@ const Packs = () => {
           if (!res.ok) {
             throw new Error('Failed to fetch data');
           }
-  
           const jsonData = await res.json();
           setData(jsonData.data);
         } catch (error) {
-          console.error(error);
+          return <div className='w-full flex justify-center items-center m-auto text-red-500 '>
+            Something Wrrong try again later
+          </div>
         } finally {
           setLoading(false);
         }
@@ -29,17 +30,12 @@ const Packs = () => {
     }, []);
   
     if (loading) {
-      return <div>Loading...</div>;
+      return <div className='w-full flex justify-center items-center m-auto text-green-500'>Loading...</div>;
     }
   
     if (!Array.isArray(data)) {
-      return <div>Data is not in the expected format</div>;
+      return <div className='w-full flex justify-center items-center m-auto text-red-500'>Data is not in the expected format</div>;
     }
-
-
-  console.log('====================================');
-  console.log(data);
-  console.log('====================================');
     return (
         <div className=" flex flex-col">
             <div className=" text-black mt-3 font-bold text-center">
