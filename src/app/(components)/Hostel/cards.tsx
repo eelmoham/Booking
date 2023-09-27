@@ -13,7 +13,7 @@ interface CardHostelProps {
 
 const CardHostel: React.FC<CardHostelProps> = ({ id, picture, name, short_description, link }) => {
     return (
-        <Card className="py-4 my-2 sm:mx-2 max-w-[300px] mx-auto" key={id}>
+        <Card className="py-4 my-2 sm:mx-2 max-w-[300px] mx-auto">
             <CardBody className="overflow-visible py-2">
                 <Image
                     alt="Card background"

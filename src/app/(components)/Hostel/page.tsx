@@ -38,8 +38,8 @@ const Hostel = () => {
   return (
     <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 m-auto" id="Rooms">
       {
-        data.map((items: any) => (
-          <CardHostel id={items.id} picture={items.picture} name={items.name} short_description={items.short_description} link={items.link} />
+        data.map((items: any, index: number) => (
+          <CardHostel key={"room_"+index} id={items.id} picture={items.picture} name={items.name} short_description={items.short_description} link={items.link} />
           ))
       }
     </div>

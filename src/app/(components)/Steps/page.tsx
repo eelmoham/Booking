@@ -1,13 +1,20 @@
+'use client';
+
 import Link from "next/link";
 import "./Steps.css";
+import { usePathname } from "next/navigation";
 
 const Steps = () => {
+    const pathname = usePathname()
+    const isActive = (href: string) => {
+        return pathname === href ? 'bg-[#bbf7d0] w-1 md:h-20 h-10 self-center' : 'bg-white bg-opacity-30 w-1 md:h-20 h-10 self-center';
+    };
     return (
         <div className="overflow-auto rounded-lg w-[20%] md:w-[350px] flex justify-center items-center bg-[#000000] p-1">
             <div className="flex flex-col my-auto">
                 <Link
-                  href='Packs'
-                 className=" flex gap-3 justify-between  md:text-sm text-xs">
+                    href='Packs'
+                    className=" flex gap-3 justify-between  md:text-sm text-xs">
                     <div className=" text-white hidden md:flex md:flex-col items-center w-full overflow-hidden ">
                         <h3 className="font-medium leading-tight">Personal Info</h3>
                         <p className="">Step details here</p>
@@ -18,7 +25,7 @@ const Steps = () => {
                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5.917 5.724 10.5 15 1.5" />
                             </svg>
                         </span>
-                        <div className=" bg-[#bbf7d0] w-1 md:h-20 h-10 self-center" ></div>
+                        <div className={isActive('/Packs')} ></div>
                     </div>
                 </Link>
                 <Link href="#" className=" flex gap-3 justify-between  md:text-sm text-xs">
