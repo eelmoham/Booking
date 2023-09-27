@@ -3,7 +3,7 @@ import "./Steps.css";
 
 const Steps = () => {
     return (
-        <div className=" overflow-auto rounded-lg w-[20%] md:w-[350px] flex justify-center items-center bg-[#000000] p-1">
+        <div className="overflow-auto rounded-lg w-[20%] md:w-[350px] flex justify-center items-center bg-[#000000] p-1">
             <div className="flex flex-col my-auto">
                 <Link
                   href='Packs'
