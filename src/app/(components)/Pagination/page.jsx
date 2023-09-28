@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
-const Navigator = () => {
+const Pagination = () => {
     const paths = ['Packs', 'Hostel', 'Days', 'CheckOut'];
     
     const pathname = usePathname()
@@ -24,12 +24,18 @@ const Navigator = () => {
 
     return (
         <div className="w-full flex justify-between">
+            
+            
+            
             <button disabled={()=>{
                 if (paths.indexOf(pathname.split('/')[1]) == 0 )
                     return true
                 else
                     return false
-            }} className={paths.indexOf(pathname.split('/')[1]) == 0?'opacity-25':''}> <Link className="p-2 mx-2" href={handlePrev()}>Prev</Link></button>
+            }} className={paths.indexOf(pathname.split('/')[1]) == 0?'hidden':''}> <Link className="p-2 mx-2" href={handlePrev()}>Prev</Link></button>
+            
+            
+            
             <button disabled={
                 ()=>{
                     if (paths.indexOf(pathname.split('/')[1]) == paths.length - 1)
@@ -39,9 +45,9 @@ const Navigator = () => {
                     else
                         return false
                 }
-            } className={paths.indexOf(pathname.split('/')[1]) == paths.length - 1?'opacity-25':''}> <Link className="p-2 mx-2" href={handleNext()}>Next</Link></button>
+            } className={pathname==='/Packs' || pathname==='/Hostel'?'hidden':''}> <Link className="p-2 mx-2" href={handleNext()}>Next</Link></button>
         </div>
     );
 };
 
-export default Navigator;
+export default Pagination;

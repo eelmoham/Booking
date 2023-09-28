@@ -1,11 +1,8 @@
 import Image from 'next/image'
+import Packs from './(components)/Packs/page'
 
 export default function Home() {
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen">
-
-            home
-
-        </div>
+        <Packs />
     )
 }

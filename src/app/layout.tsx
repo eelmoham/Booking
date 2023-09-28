@@ -4,7 +4,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import Steps from './(components)/Steps/page'
 import { Metadata } from 'next';
-import Navigator from './(components)/Navigator/page';
+import Pagination from './(components)/Pagination/page';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -30,7 +30,7 @@ export default function RootLayout({ children }: {children: React.ReactNode}) {
                             <div className=' overflow-auto w-full h-full flex flex-col'>
                                 {children}
                             </div>
-                            <Navigator/>
+                            <Pagination />
                         </div>
                     </div>
                 </main>
