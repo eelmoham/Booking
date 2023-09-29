@@ -12,14 +12,14 @@ const Pagination = () => {
             return paths[paths.indexOf(pathname.split('/')[1]) + 1]
         }
         else
-            return "javascript:;"
+            return '/'
     }
     
     function handlePrev() {
         if (paths.indexOf(pathname.split('/')[1]) > 0)
             return paths[paths.indexOf(pathname.split('/')[1]) - 1]
         else
-            return "javascript:;"
+            return '/'
     }
 
     return (
@@ -27,12 +27,8 @@ const Pagination = () => {
             
             
             
-            <button disabled={()=>{
-                if (paths.indexOf(pathname.split('/')[1]) == 0 )
-                    return true
-                else
-                    return false
-            }} className={paths.indexOf(pathname.split('/')[1]) == 0?'hidden':''}> <Link className="p-2 mx-2" href={handlePrev()}>Prev</Link></button>
+            <button disabled={paths.indexOf(pathname.split('/')[1]) == 0?true:false} 
+            className={paths.indexOf(pathname.split('/')[1]) == 0?'hidden':''}> <Link className="p-2 mx-2" href={handlePrev()}>Prev</Link></button>
             
             
             

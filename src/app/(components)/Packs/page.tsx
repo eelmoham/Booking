@@ -3,15 +3,29 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
+
+// reduce
+import { useSelector, useDispatch } from 'react-redux'
+import { setOrder } from '../Shared/Pack';
+//fin
+
+
+
 const Packs = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const dispatch = useDispatch()
+
+
   useEffect(() => {
+    console.log('====================================');
+    console.log('Packs');
+    console.log('====================================');
+
     const fetchData = async () => {
       try {
         const res = await fetch('https://booking.tayyurt-surf.com/api/v1/packs');
-
         if (!res.ok) {
           throw new Error('Failed to fetch data');
         }
@@ -36,8 +50,11 @@ const Packs = () => {
   if (!Array.isArray(data)) {
     return <div className='w-full flex justify-center items-center m-auto text-red-500'>Data is not in the expected format</div>;
   }
+  
+
   return (
     <div className=" flex flex-col">
+      
       <div className=" text-black mt-3 font-bold text-center">
         PICKUP A PACK
       </div>
@@ -52,7 +69,9 @@ const Packs = () => {
                   <label className="text-[12px] text-gray-500">/ 7 days</label>
                 </span>
                 <div className="mt-4 flex space-x-3">
-                  <Link href="Hostel" className="inline-flex items-center rounded-lg bg-green-400 px-4 py-2 text-center text-sm font-medium text-white hover:bg-green-500 focus:outline-none focus:ring-4 focus:ring-green-100">Select</Link>
+                  <Link 
+                  onClick={() => dispatch(setOrder(pack))}
+                  href="Hostel" className="inline-flex items-center rounded-lg bg-green-400 px-4 py-2 text-center text-sm font-medium text-white hover:bg-green-500 focus:outline-none focus:ring-4 focus:ring-green-100">Select</Link>
                 </div>
               </div>
             </div>

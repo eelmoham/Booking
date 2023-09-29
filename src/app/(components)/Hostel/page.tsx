@@ -2,9 +2,11 @@
 
 import React, { useState, useEffect } from 'react';
 import CardHostel from './cards';
+
 const Hostel = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,13 +38,22 @@ const Hostel = () => {
     return <div className='w-full flex justify-center items-center m-auto text-red-500'>Data is not in the expected format</div>;
   }
   return (
-    <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 m-auto" id="Rooms">
-      {
-        data.map((items: any, index: number) => (
-          <CardHostel key={"room_"+index} id={items.id} picture={items.picture} name={items.name} short_description={items.short_description} link={items.link} />
+      <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 m-auto" id="Rooms">
+        {
+          data.map((items: any, index: number) => (
+            <CardHostel
+              key={"room_" + index}
+              id={items.id}
+              picture={items.picture}
+              title={items.name}
+              short_description={items.short_description}
+              description={items.description || "No description available"}
+              pack_price={items.pack_price || 0}
+              day_price={items.day_price || 0}
+            />
           ))
-      }
-    </div>
+        }
+      </div>
   );
 }
 export default Hostel
