@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
 const Pagination = () => {
-    const paths = ['Packs', 'Hostel', 'Days', 'CheckOut'];
+    const paths = ['Packs', 'Hostel', 'Days', 'CheckOut', 'facture'];
     
     const pathname = usePathname()
     function handleNext() {

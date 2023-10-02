@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+// components
 import Input from "./Input";
 import Select from "./Select";
 import Service from "./Service";
@@ -24,17 +25,8 @@ const CheckOut = () => {
 
 
   useEffect(() => {
-    let arr = []
-    data.map((item) => {
-      if (services.includes(item.id)) {
-        arr.push(item)
-        console.log('====================================');
-        console.log(arr);
-        console.log('====================================');
-      }
-    })
-
-    if (arr.length > 0 && fullname !== "" && telephone !== "" && email !== "" && age !== 0 && guests !== 0 && level !== "") {
+    
+    if (fullname !== "" && telephone !== "" && email !== "" && age !== 0 && guests !== 0 && level !== "") {
       const orderData = {
         fullName: fullname,
         Telephone: telephone,
@@ -42,14 +34,16 @@ const CheckOut = () => {
         Age: age,
         Guest: guests,
         Level: level,
-        services: services.map(service => ({
-          title: service.title,
-          price: service.price
-        })),
+        service: data.map((item) => {
+          if (services.includes(item.id)) {
+            return {title:item.title, price:item.price}
+          }
+        })
       };
+      console.log('*************');
+      console.log('zepi: ',orderData);
       dispatch(setOrder(orderData));
       console.log('*************');
-      arr = [];
     }
   }, [services]);
 

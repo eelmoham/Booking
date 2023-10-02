@@ -44,7 +44,16 @@ const CardHostel: React.FC<Hostel> = ({ id, title, short_description, descriptio
                 <Link
                     onClick={
                         () => {
-                            dispatch(setOrder({ id, title, short_description, description, pack_price, day_price, picture }))
+                            dispatch(setOrder({id:id, title:title, short_description:short_description, description:description, pack_price:pack_price, day_price:day_price, picture:picture}))
+                            console.log('====================================');
+                            console.log('id', id);
+                            console.log('title', title);
+                            console.log('short_description', short_description);
+                            console.log('description', description);
+                            console.log('pack_price', pack_price);
+                            console.log('day_price', day_price);
+                            console.log('picture', picture);
+                            console.log('====================================');
                         }
                     }
                     href="Days"

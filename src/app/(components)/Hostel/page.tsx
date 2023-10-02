@@ -44,8 +44,8 @@ const Hostel = () => {
             <CardHostel
               key={"room_" + index}
               id={items.id}
+              title={items.title}
               picture={items.picture}
-              title={items.name}
               short_description={items.short_description}
               description={items.description || "No description available"}
               pack_price={items.pack_price || 0}
