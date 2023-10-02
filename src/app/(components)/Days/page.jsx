@@ -1,35 +1,34 @@
 'use client';
+
 // reduce
 import {useSelector, useDispatch} from 'react-redux'
 import {setOrder} from '../Shared/Days';
 // fin
-
-import {useEffect, useState} from 'react';
+import {use, useEffect, useState} from 'react';
 import DatePicker from './DatePicker';
 
 
 
 export default function Days() {
-    const [fromDate, setFromeDate] = useState('');
-    const [toDate, setToDate] = useState('');
+    const [fromDate, setFromeDate] = useState(new Date());
+    const [toDate, setToDate] = useState(new Date(new Date().getTime() + (7 * 24 * 60 * 60 * 1000)));
     const [disabled, setDisabled] = useState(true);
-
-    
-
-
     const dispatch = useDispatch()
 
     useEffect(() => {
+        if (disabled && fromDate) {
+            setToDate(new Date(new Date(fromDate).getTime() + (7 * 24 * 60 * 60 * 1000)))
+            dispatch(setOrder({fromDate: fromDate.toString(), toDate: new Date(new Date(fromDate).getTime() + (7 * 24 * 60 * 60 * 1000)).toString(), offer: disabled}))
+            return;
+        }
         if (!fromDate) {
             return;
-        } else {
-            dispatch(setOrder({fromDate: fromDate, toDate: toDate, offer: disabled}))
-
-            alert('fromDate: ' + fromDate + ' toDate: ' + toDate + ' offer: ' + disabled)
+        } else if (fromDate && toDate)
+        {
+            dispatch(setOrder({fromDate: fromDate.toString(), toDate: toDate.toString(), offer: disabled}))
         }
-    }, [fromDate, toDate])
 
-
+    }, [fromDate])
     return (
         <div className=" flex flex-col justify-center items-center w-full h-1/2 m-auto bg-[#ffffff]">
             <div className=" absolute text-black mt-3 font-bold text-center top-1">
@@ -64,6 +63,7 @@ export default function Days() {
                             <input onChange={
                                     (e) => {
                                         setDisabled(!disabled);
+                                        // setToDate(new Date(new Date(fromDate).getTime() + 7 * 24 * 60 * 60 * 1000).toString())
                                     }
                                 }
                                 id="react"
@@ -85,12 +85,11 @@ export default function Days() {
             </div>
             <div className="w-full justify-center flex items-center">
                 <div className=''>
-                    <DatePicker seter={setFromeDate} />
+                    <DatePicker seter={setFromeDate} NewdefaultDate={fromDate} />
                 </div>
                 <span className="mx-4 text-gray-500">to</span>
                 <div className={disabled?'opacity-25 pointer-events-none':''}>
-
-                    <DatePicker seter={setToDate} />
+                    <DatePicker seter={setToDate} NewdefaultDate={toDate}/>
                 </div>
             </div>
         </div>

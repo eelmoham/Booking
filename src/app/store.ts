@@ -1,14 +1,16 @@
+import { configureStore } from '@reduxjs/toolkit'
 import { Days } from './(components)/Shared/Days';
 import { Hostel } from './(components)/Shared/Hostel';
 import { Pack } from './(components)/Shared/Pack';
-import { configureStore } from '@reduxjs/toolkit'
+import { informationsOfer } from './(components)/Shared/Info';
 
 export const store = configureStore({
   reducer: {
     // counter : counterSlice,
     Pack: Pack.reducer,
     Hostel: Hostel.reducer,
-    Days: Days.reducer
+    Days: Days.reducer,
+    Info : informationsOfer.reducer
   },
 })
 

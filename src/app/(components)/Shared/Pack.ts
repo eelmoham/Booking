@@ -43,9 +43,6 @@ export const Pack = createSlice({
   },
 })
 
-
-// Action creators are generated for each case reducer function
-// export const { increment, decrement, incrementByAmount } = counterSlice.actions
 export const { setOrder } = Pack.actions
 
 export default Pack.reducer

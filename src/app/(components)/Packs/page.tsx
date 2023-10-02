@@ -19,10 +19,6 @@ const Packs = () => {
 
 
   useEffect(() => {
-    console.log('====================================');
-    console.log('Packs');
-    console.log('====================================');
-
     const fetchData = async () => {
       try {
         const res = await fetch('https://booking.tayyurt-surf.com/api/v1/packs');
@@ -39,7 +35,6 @@ const Packs = () => {
         setLoading(false);
       }
     };
-
     fetchData();
   }, []);
 
@@ -61,7 +56,7 @@ const Packs = () => {
       <div className="flex w-full flex-row flex-wrap justify-center items-center" id="Packs">
         {
           data.map((pack: any) => (
-            <div className="m-4 w-full rounded-lg border border-gray-200 bg-white shadow sm:max-w-xs" key={pack.id}>
+            <div className="m-1 w-full rounded-lg border border-gray-200 bg-white shadow sm:max-w-xs" key={pack.id}>
               <div className="flex flex-col items-center pb-5 pt-4">
                 <img className="mb-3 h-24 w-24 rounded-full shadow-lg" src={`https://booking.tayyurt-surf.com/storage/${pack.picture}`} alt="Bonnie image" /><span className="px-3 text-center text-sm text-gray-500">{pack.short_description}</span>                                <h5 className="mb-1 text-xl font-medium text-gray-900">{pack.name}</h5>
 

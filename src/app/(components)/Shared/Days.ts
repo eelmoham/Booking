@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface DaysReserved {
-  numberOfDays: number | null;
+  numberOfDays: number;
   from : string | null;
     to : string | null;
     offer : boolean | null;
@@ -11,16 +11,17 @@ export interface DaysReserved {
 interface Order {
   data: DaysReserved;
   dataExist: boolean;
+  
 }
 
 const initialState: Order = {
   data: {
-    numberOfDays: null,
     from: null,
     to: null,
-    offer : true
+    offer : true,
+    numberOfDays: 0
   },
-  dataExist: false
+  dataExist: false,
 };
 
 export const Days = createSlice({
@@ -31,14 +32,16 @@ export const Days = createSlice({
       state.data = action.payload
       if (action.payload.offer === true && action.payload.from !== null) {
         state.dataExist = true;
-        //add 7 days when offer is true
-        state.data.numberOfDays = Math.floor((new Date(action.payload.from).getTime()) + (7 * 24 * 60 * 60 * 1000))
+        if(action.payload.offer === true)
+        {
+          action.payload.numberOfDays = 7;
+        }
       }
       else if (action.payload.from !== null && action.payload.to !== null && action.payload.offer === false) {
         state.dataExist = true;
-        //calculate days between two dates
-        state.data.numberOfDays = Math.floor((new Date(action.payload.to).getTime() - new Date(action.payload.from).getTime()) / (24 * 60 * 60 * 1000))
+        action.payload.numberOfDays = ((new Date(action.payload.to).getDate() - new Date(action.payload.from).getDate()) / (1000 * 60 * 60 * 24))
       }
+      
     },
   },
 })

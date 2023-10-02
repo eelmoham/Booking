@@ -27,8 +27,8 @@ const Pagination = () => {
             
             
             
-            <button disabled={paths.indexOf(pathname.split('/')[1]) == 0?true:false} 
-            className={paths.indexOf(pathname.split('/')[1]) == 0?'hidden':''}> <Link className="p-2 mx-2" href={handlePrev()}>Prev</Link></button>
+            <button disabled={paths.indexOf(pathname && pathname.split('/')[1]) == 0?true:false} 
+            className={pathname==='/'||pathname==='/Packs'||paths.indexOf(pathname.split('/')[1]) == 0 ? 'hidden':''}> <Link className="p-2 mx-2" href={handlePrev()}>Prev</Link></button>
             
             
             
@@ -41,7 +41,7 @@ const Pagination = () => {
                     else
                         return false
                 }
-            } className={pathname==='/Packs' || pathname==='/Hostel'?'hidden':''}> <Link className="p-2 mx-2" href={handleNext()}>Next</Link></button>
+            } className={pathname==='/'||pathname==='/Packs' || pathname==='/Hostel'?'hidden':''}> <Link className="p-2 mx-2" href={handleNext()}>Next</Link></button>
         </div>
     );
 };

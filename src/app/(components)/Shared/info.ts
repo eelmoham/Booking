@@ -1,21 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-export interface informationsOfer {
+export interface infoOrder {
   fullName: string | null;
   Telephone: string | null;
   Email: string | null;
   Level: string | null;
   Age: number | null;
   Guest: number | null;
-  service: {
+  services: {
     title: string | null;
     price: number | null;
-  };
+  }[];
 }
 
 interface Order {
-  data: informationsOfer;
+  data: infoOrder;
   dataExist: boolean;
 }
 
@@ -27,21 +27,21 @@ const initialState: Order = {
     Level: null,
     Age: null,
     Guest: null,
-    service: {
+    services: [{
       title: null,
       price: null,
-    },
+    }],
   },
   dataExist: false,
 };
 
 export const informationsOfer = createSlice({
-  name: "informationsOfer",
+  name: "Info",
   initialState,
   reducers: {
-    setOrder: (state, action: PayloadAction<informationsOfer>) => {
+    setOrder: (state, action: PayloadAction<infoOrder>) => {
       state.data = action.payload;
-      if (action.payload.fullName !== null && action.payload.Telephone !== null && action.payload.Email !== null && action.payload.Level !== null && action.payload.Age !== null && action.payload.Guest !== null) {
+      if (action.payload.fullName  && action.payload.Telephone  && action.payload.Email && action.payload.Level  && action.payload.Age  && action.payload.Guest && action.payload.services.length > 0) {
         state.dataExist = true;
       }
     },
