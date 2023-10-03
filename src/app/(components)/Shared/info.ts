@@ -8,7 +8,7 @@ export interface infoOrder {
   Level: string | null;
   Age: number | null;
   Guest: number | null;
-  services: {
+  service: {
     title: string | null;
     price: number | null;
   }[];
@@ -27,7 +27,7 @@ const initialState: Order = {
     Level: null,
     Age: null,
     Guest: null,
-    services: [{
+    service: [{
       title: null,
       price: null,
     }],
@@ -41,7 +41,7 @@ export const informationsOfer = createSlice({
   reducers: {
     setOrder: (state, action: PayloadAction<infoOrder>) => {
       state.data = action.payload;
-      if (action.payload.fullName  && action.payload.Telephone  && action.payload.Email && action.payload.Level  && action.payload.Age  && action.payload.Guest && action.payload.services.length > 0) {
+      if (action.payload.fullName  && action.payload.Telephone  && action.payload.Email && action.payload.Level  && action.payload.Age  && action.payload.Guest && action.payload.service.length > 0) {
         state.dataExist = true;
       }
     },
