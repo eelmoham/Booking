@@ -19,7 +19,8 @@ const Select = ({state}, id) => {
 
   const handleChange = (event) => {
     setSelected(event.target.value);
-    state(selected.value);
+    state(event.target.value);
+    alert(event.target.value);
   };
 
   return (
@@ -31,7 +32,7 @@ const Select = ({state}, id) => {
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
       >
         {options.map((option) => (
-          <option key={option.value} value={option.value}>
+          <option key={option.value} value={option.value} >
             {option.text}{" "}
           </option>
         ))}{" "}

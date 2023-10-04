@@ -41,7 +41,7 @@ const Pagination = () => {
                     else
                         return false
                 }
-            } className={pathname==='/'||pathname==='/Packs' || pathname==='/Hostel'?'hidden':''}> <Link className="p-2 mx-2" href={handleNext()}>Next</Link></button>
+            } className={pathname==='/'||pathname==='/Packs' || pathname==='/Hostel' || pathname==='/facture' ?'hidden':''}> <Link className="p-2 mx-2" href={handleNext()}>Next</Link></button>
         </div>
     );
 };

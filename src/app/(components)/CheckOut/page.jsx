@@ -19,14 +19,14 @@ const CheckOut = () => {
   const [email, setEmail] = useState("");
   const [age, setAge] = useState(0);
   const [guests, setGuests] = useState(0);
-  const [level, setLevel] = useState("");
+  const [level, setLevel] = useState('Beginner');
   const [services, setServices] = useState([]);
 
 
 
   useEffect(() => {
     
-    if (fullname !== "" && telephone !== "" && email !== "" && age !== 0 && guests !== 0 && level !== "") {
+    if (fullname !== "" && telephone !== "" && guests !== 0) {
       const orderData = {
         fullName: fullname,
         Telephone: telephone,
@@ -36,7 +36,7 @@ const CheckOut = () => {
         Level: level,
         service: data.map((item) => {
           if (services.includes(item.id)) {
-            return {title:item.title, price:item.price}
+            return {id:item.id, title:item.title, price:item.price}
           }
         })
       };

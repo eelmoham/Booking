@@ -9,6 +9,7 @@ export interface infoOrder {
   Age: number | null;
   Guest: number | null;
   service: {
+    id : number | null;
     title: string | null;
     price: number | null;
   }[];
@@ -28,6 +29,7 @@ const initialState: Order = {
     Age: null,
     Guest: null,
     service: [{
+      id : null,
       title: null,
       price: null,
     }],

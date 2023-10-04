@@ -1,7 +1,7 @@
 'use client';
-import { RootState } from "@/app/store";
+// import { RootState } from "@/app/store"; needed for typescript.
 import { useSelector } from "react-redux";
-
+import Submet from './submet';
 const Facture = () => {
   // Assuming 'Hostel' is the name of your slice
   const hostelData = useSelector((state) => state.Hostel.data);
@@ -17,26 +17,34 @@ const Facture = () => {
   const isDaysDataLoading = useSelector((state) => state.Days.dataExist);
 
   const TotalPrice = () => {
-    if (isDataLoading && isPackDataLoading && isServiceDataLoading && isDaysDataLoading) {
-      let total = 0;
-      total += hostelData.day_price * daysData.numberOfDays * daysData.numberOfGuests;
-      total += packData.day_price * daysData.numberOfDays * daysData.numberOfGuests;
-      serviceData.service.map((service) => {
-        if (service) {
-          total += service.price * daysData.numberOfGuests;
-        }
-      })
-      return total;
-    }
+    let total = 0;
+    total += packData.day_price * daysData.numberOfDays * serviceData.Guest;
+    console.log('====================================');
+    console.log('hostelData.day_price', hostelData.day_price);
+    console.log('daysData.numberOfDays', daysData.numberOfDays);
+    console.log('daysData.numberOfGuests', serviceData.Guest);
+    console.log("total", total);
+    console.log('====================================');
+    total += hostelData.day_price * daysData.numberOfDays * serviceData.Guest;
+    console.log("total", total);
+    console.log('====================================');
+    serviceData.service.map((service) => {
+      if (service)
+        total += service.price;
+    })
+    return total;
   }
   return (
-    <div>
+    <div className=" mx-2 my-auto">
       {
         <div className="flex flex-col gap-4 ml-2 border-l-2">
 
           <div className="flex flex-col">
-            <h1 className="text-gray-400">Pack</h1>
-            <div className="flex gap-4 ml-3">
+            <div className="relative flex items-center ">
+              <div className="w-2 h-2 rounded-full bg-slate-700 absolute left-[-4px]"></div>
+              <h1 className="text-gray-400 ml-2">Pack</h1>
+            </div>
+            <div className="flex gap-4 ml-5">
               <div className="text-bold text-black">{packData.title}</div>
               <div className="text-green-500"> {packData.day_price}€/Day/Guest</div>
             </div>
@@ -44,15 +52,21 @@ const Facture = () => {
 
 
           <div className="flex flex-col">
-            <h1 className="text-gray-400">Room</h1>
-            <div className="flex gap-4 ml-3">
+            <div className="relative flex items-center ">
+              <div className="w-2 h-2 rounded-full bg-slate-700 absolute left-[-4px]"></div>
+              <h1 className="text-gray-400 ml-2">Room</h1>
+            </div>
+            <div className="flex gap-4 ml-5">
               <div>{hostelData.title}</div>
               <div className="text-green-500"> {hostelData.day_price}€/Day/Guest</div>
             </div>
           </div>
 
           <div className="flex flex-col">
-            <h1 className="text-gray-400">Room</h1>
+            <div className="relative flex items-center ">
+              <div className="w-2 h-2 rounded-full bg-slate-700 absolute left-[-4px]"></div>
+              <h1 className="text-gray-400 ml-2">Room</h1>
+            </div>
             <div className="flex flex-col ml-3">
               <div className="flex gap-4">
                 <div> <span className="text-gray-400"> from :</span> {daysData.from?.substring(0, 15)}</div>
@@ -65,7 +79,10 @@ const Facture = () => {
 
 
           <div className="flex flex-col">
-            <h1 className="text-gray-400">Extra services</h1>
+            <div className="relative flex items-center ">
+              <div className="w-2 h-2 rounded-full bg-slate-700 absolute left-[-4px]"></div>
+              <h1 className="text-gray-400 ml-2">Extra services</h1>
+            </div>
             <div className="ml-3">
               {
                 serviceData.service.map((service) => {
@@ -84,8 +101,11 @@ const Facture = () => {
             </div>
           </div>
           <div className="flex flex-col">
-            <h1 className="text-gray-400">Toltal</h1>
-            <div className="flex gap-4 ml-3">
+            <div className="relative flex items-center ">
+              <div className="w-2 h-2 rounded-full bg-slate-700 absolute left-[-4px]"></div>
+              <h1 className="text-gray-400 ml-2">Toltal</h1>
+            </div>
+            <div className="flex gap-4 ml-5">
               <div className="text-bold text-black">{TotalPrice()}€</div>
             </div>
 
@@ -93,6 +113,10 @@ const Facture = () => {
 
         </div>
       }
+
+      <div>
+        <Submet days={daysData} hostel={hostelData} info={serviceData} packs={packData} /> 
+      </div>
     </div>
   )
 };
