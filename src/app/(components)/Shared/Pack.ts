@@ -9,6 +9,7 @@ export interface PackOrder {
   pack_price: number | null;
   day_price: number | null;
   picture: string | null;
+  with_hosting: string | null;
 }
 
 interface Order {
@@ -24,7 +25,8 @@ const initialState: Order = {
     description: null,
     pack_price: null,
     day_price: null,
-    picture: null
+    picture: null,
+    with_hosting: null,
   },
   dataExist: false
 };

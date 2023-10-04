@@ -17,6 +17,7 @@
     "flowbite-datepicker": "^1.2.2",
     "flowbite-react": "^0.6.1",
     "framer-motion": "^10.16.4",
+    "js-cookie": "^3.0.5",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",

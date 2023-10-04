@@ -20,7 +20,6 @@ const Select = ({state}, id) => {
   const handleChange = (event) => {
     setSelected(event.target.value);
     state(event.target.value);
-    alert(event.target.value);
   };
 
   return (

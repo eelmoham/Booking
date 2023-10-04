@@ -20,9 +20,6 @@ export default function Days() {
     }, [fromDate])
     return (
         <div className=" flex flex-col justify-center items-center w-full h-1/2 m-auto bg-[#ffffff]">
-            <div className=" absolute text-black mt-3 font-bold text-center top-1">
-                PICKUP A DATE
-            </div>
             <div className="w-full flex justify-center mr-2 ">
                 <div className="md:flex justify-center items-center gap-10">
                     <div className="inline-flex items-center">

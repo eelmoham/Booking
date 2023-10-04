@@ -49,10 +49,6 @@ const Packs = () => {
 
   return (
     <div className=" flex flex-col">
-      
-      <div className=" text-black mt-3 font-bold text-center">
-        PICKUP A PACK
-      </div>
       <div className="flex w-full flex-row flex-wrap justify-center items-center" id="Packs">
         {
           data.map((pack: any) => (
@@ -66,7 +62,7 @@ const Packs = () => {
                 <div className="mt-4 flex space-x-3">
                   <Link 
                   onClick={() => dispatch(setOrder(pack))}
-                  href="Hostel" className="inline-flex items-center rounded-lg bg-green-400 px-4 py-2 text-center text-sm font-medium text-white hover:bg-green-500 focus:outline-none focus:ring-4 focus:ring-green-100">Select</Link>
+                  href={pack.with_hosting === '1'?"Hostel":'Days'} className="inline-flex items-center rounded-lg bg-green-400 px-4 py-2 text-center text-sm font-medium text-white hover:bg-green-500 focus:outline-none focus:ring-4 focus:ring-green-100">Select</Link>
                 </div>
               </div>
             </div>
