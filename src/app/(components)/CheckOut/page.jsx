@@ -27,7 +27,22 @@ const CheckOut = () => {
   
 
   useEffect(() => {
-    if (fullname !== null && telephone !== null && email !== null && age >= 1 && guests >= 1 && level !== null) {
+    if (infoData.dataExist === true) {
+      const orderData = {
+        fullName: infoData.data.fullName,
+        Telephone: infoData.data.Telephone,
+        Email: infoData.data.Email,
+        Age: infoData.data.Age,
+        Guest: infoData.data.Guest,
+        Level: infoData.data.Level,
+        service: data.filter((item) => {
+          if (services.includes(item.id)) {
+            return item
+          }
+        })
+      };
+    dispatch(setOrder(orderData));}
+    else if (fullname !== null && telephone !== null && email !== null && age >= 1 && guests >= 1 && level !== null && infoData.dataExist === false) {
       const orderData = {
         fullName: fullname,
         Telephone: telephone,
@@ -43,25 +58,7 @@ const CheckOut = () => {
       };
       dispatch(setOrder(orderData));
     }
-  }, [fullname, telephone, email, guests, level, age]);
-
-  useEffect(() => {
-
-    const orderData = {
-      fullName: fullname,
-      Telephone: telephone,
-      Email: email,
-      Age: age,
-      Guest: guests,
-      Level: level,
-      service: data.filter((item) => {
-        if (services.includes(item.id)) {
-          return item
-        }
-      })
-    };
-    dispatch(setOrder(orderData));
-  }, [services,fullname, telephone, email, guests, level, age]);
+  }, [services, fullname, telephone, email, guests, level, age]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -104,6 +101,8 @@ const CheckOut = () => {
       </div>
     );
   }
+  console.log(infoData.data)
+  console.log(services)
 
   return (
     <div className="w-full flex flex-col m-auto">
