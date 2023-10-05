@@ -25,9 +25,9 @@ const initialState: Order = {
     fullName: null,
     Telephone: null,
     Email: null,
-    Level: null,
-    Age: null,
-    Guest: null,
+    Level: 'Beginner',
+    Age: 18,
+    Guest: 1,
     service: [{
       id : null,
       title: null,

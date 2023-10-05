@@ -19,8 +19,8 @@ const Steps = () => {
                     href='#'
                     className=" flex gap-3 justify-between  md:text-sm text-xs">
                     <div className=" text-white hidden md:flex md:flex-col items-center w-full overflow-hidden ">
-                        <h3 className="font-medium leading-tight">Choosing Pack</h3>
-                        <p className="">Step details here</p>
+                        <h3 className="font-medium leading-tight pt-[.4rem]">Choosing Pack</h3>
+                        
                     </div>
                     <div className=" flex flex-col h-full">
                         {
@@ -40,8 +40,8 @@ const Steps = () => {
                 </Link>
                 <Link href="#" className=" flex gap-3 justify-between  md:text-sm text-xs">
                     <div className=" text-white hidden md:flex md:flex-col items-center w-full overflow-hidden ">
-                        <h3 className="font-medium leading-tight">Account Info</h3>
-                        <p className="">Step details here</p>
+                        <h3 className="font-medium leading-tight pt-[.4rem]">Choosing Room</h3>
+                        
                     </div>
 
                     <div className=" flex flex-col h-full">
@@ -64,8 +64,8 @@ const Steps = () => {
                 </Link>
                 <Link href="#" className=" flex gap-3 justify-between  md:text-sm text-xs">
                     <div className=" text-white hidden md:flex md:flex-col items-center w-full overflow-hidden ">
-                        <h3 className="font-medium leading-tight">Review</h3>
-                        <p className="">Step details here</p>
+                        <h3 className="font-medium leading-tight pt-[.4rem]">SELECT DATE</h3>
+                        
                     </div>
 
                     <div className=" flex flex-col h-full">
@@ -87,8 +87,8 @@ const Steps = () => {
                 </Link>
                 <Link href="#" className=" flex gap-3 justify-between  md:text-sm text-xs">
                     <div className=" text-white hidden md:flex md:flex-col items-center w-full overflow-hidden ">
-                        <h3 className="font-medium leading-tight">Confirmation</h3>
-                        <p className="">Step details here</p>
+                        <h3 className="font-medium leading-tight text-center">YOUR<br/>INFORMATIONS</h3>
+                        
                     </div>
                     <div className=" flex flex-col h-full">
                         {

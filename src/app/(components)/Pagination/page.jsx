@@ -1,65 +1,62 @@
 'use client';
 
 import Link from "next/link";
-import { usePathname } from 'next/navigation'
 import { use, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 // import Submet from './submet';
 
 
-const Pagination = () => {
+const Pagination = ({Pathname}) => {
 
-    const serviceData = useSelector((state) => state.Info.data);
+    const infoData= useSelector((state) => state.Info.data);
     const daysData = useSelector((state) => state.Days.data);
 
     const paths = ['Packs', 'Hostel', 'Days', 'CheckOut', 'facture'];
+    
+    const [submeted, setSubmeted] = useState(true);
 
-    const pathname = usePathname()
-
-    const [submeted, setSubmeted] = useState(false);
     function handleNext() {
         if (submeted) {
-            if (paths.indexOf(pathname.split('/')[1]) < paths.length - 1) {
-                return paths[paths.indexOf(pathname.split('/')[1]) + 1]
+            if (paths.indexOf(Pathname.split('/')[1]) < paths.length - 1) {
+                return paths[paths.indexOf(Pathname.split('/')[1]) + 1]
             }
             else
                 return '/'
         }
-        return pathname
+        return Pathname
     }
 
     function handlePrev() {
-        if (paths.indexOf(pathname.split('/')[1]) > 0)
-            return paths[paths.indexOf(pathname.split('/')[1]) - 1]
+        if (paths.indexOf(Pathname.split('/')[1]) > 0)
+            return paths[paths.indexOf(Pathname.split('/')[1]) - 1]
         else
             return '/'
     }
 
     useEffect(() => {
-        if (pathname === '/Days') {
-            if (daysData.from === undefined || daysData.from === null)
-                setSubmeted(false)
-        }
-        else if (pathname === '/CheckOut') {
-            if (serviceData.fullName === undefined || serviceData.full_name === null)
-                setSubmeted(false)
-            else if (serviceData.Email === undefined || serviceData.Email === null)
-                setSubmeted(false)
-            else if (serviceData.Telephone === undefined || serviceData.Telephone === null) 
-                setSubmeted(false)
-            else if (serviceData.Guest === undefined || serviceData.Guest === null) 
+        if (Pathname === "/Days")
+            setSubmeted(true)
+        if (Pathname === '/CheckOut') {
+            if (!infoData.fullName)
                 setSubmeted(false)
             else
                 setSubmeted(true)
-        } else 
-            setSubmeted(true)
-    }, [serviceData , daysData])
-    return (
-        <div className="w-full flex justify-between">
-            <button className={pathname === '/' || pathname === '/Packs' || paths.indexOf(pathname.split('/')[1]) == 0 ? ' opacity-20 pointer-events-none' : ''}> <Link className="p-2 mx-2" href={handlePrev()}>Prev</Link></button>
-            <button className={ !submeted || pathname === '/' || pathname === '/Packs' || pathname === '/Hostel' || pathname === '/facture' ? ' opacity-20 pointer-events-none' : ''}> <Link className="p-2 mx-2" href={handleNext()}>Next</Link></button>
-        </div>
-    );
+        }
+    }, [infoData , daysData, Pathname])
+
+
+
+    if (!(Pathname === '/' || Pathname === '/Packs' || paths.indexOf(Pathname.split('/')[1]) == 0))
+        return (
+            <div className="w-full flex justify-between bg-white pt-3 pb-[.6rem]">
+                
+                <Link className="p-2 mx-2" href={handlePrev()}>Prev</Link>
+                {
+                    (Pathname == '/Hostel' || Pathname == '/facture') ? null :
+                    <Link className={submeted?"p-2 mx-2":'p-2 mx-2 opacity-20'} href={handleNext()}>Next</Link>
+                }
+            </div>
+        );
 };
 
 export default Pagination;

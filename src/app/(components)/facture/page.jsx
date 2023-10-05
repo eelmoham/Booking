@@ -34,8 +34,6 @@ const Facture = () => {
     <div className=" mx-2 my-auto">
       {
         <div className="flex flex-col gap-4 ml-2 border-l-2">
-
-
           <div className="flex flex-col">
             <div className="relative flex items-center ">
               <div className="w-2 h-2 rounded-full bg-slate-700 absolute left-[-4px]"></div>
@@ -99,7 +97,7 @@ const Facture = () => {
                     })
                   }
                 </div>
-              </div> : null
+              </div> : console.log("service : " + serviceData.service.length) && null
           }
           <div className="flex flex-col">
             <div className="relative flex items-center ">
@@ -111,7 +109,6 @@ const Facture = () => {
             </div>
 
           </div>
-
         </div>
       }
 

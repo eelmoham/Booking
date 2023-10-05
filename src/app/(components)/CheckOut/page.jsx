@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 // components
 import Input from "./Input";
 import Select from "./Select";
@@ -11,22 +11,23 @@ import { setOrder } from "../Shared/Info";
 //fin
 
 const CheckOut = () => {
+  const infoData = useSelector((state) => state.Info);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch()
   const [fullname, setFullname] = useState(null);
   const [telephone, setTelephone] = useState(null);
   const [email, setEmail] = useState(null);
-  const [age, setAge] = useState(0);
-  const [guests, setGuests] = useState(0);
+  const [age, setAge] = useState(18);
+  const [guests, setGuests] = useState(1);
   const [level, setLevel] = useState('Beginner');
-  const [services, setServices] = useState([]);
+  const [services, setServices] = useState(infoData.dataExist?infoData.data.service.map((item) => item.id):[]);
+  
 
-
+  
 
   useEffect(() => {
-    
-    if (fullname !== null && telephone !== null && email !== null && age !== 0 && guests !== 0 && level !== null) {
+    if (fullname !== null && telephone !== null && email !== null && age >= 1 && guests >= 1 && level !== null) {
       const orderData = {
         fullName: fullname,
         Telephone: telephone,
@@ -34,18 +35,34 @@ const CheckOut = () => {
         Age: age,
         Guest: guests,
         Level: level,
-        service: data.map((item) => {
+        service: data.filter((item) => {
           if (services.includes(item.id)) {
-            console.log('====================================');
-            console.log(item);
-            console.log('====================================');
-            return {id:item.id, title:item.title, price:item.price}
+            return item
           }
         })
       };
       dispatch(setOrder(orderData));
     }
-  }, [services, fullname, telephone, email, guests, level, age]);
+  }, [fullname, telephone, email, guests, level, age]);
+
+  useEffect(() => {
+
+    const orderData = {
+      fullName: fullname,
+      Telephone: telephone,
+      Email: email,
+      Age: age,
+      Guest: guests,
+      Level: level,
+      service: data.filter((item) => {
+        if (services.includes(item.id)) {
+          return item
+        }
+      })
+    };
+    dispatch(setOrder(orderData));
+  }, [services,fullname, telephone, email, guests, level, age]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -87,22 +104,23 @@ const CheckOut = () => {
       </div>
     );
   }
-  
+
   return (
     <div className="w-full flex flex-col m-auto">
       <div className="w-full flex flex-row flex-wrap justify-center">
         <form action="" className="w-full px-4">
           <div className="grid md:grid-cols-2 md:gap-6">
             <div className="relative z-0 w-full mb-6 group">
-              <Input label='Fullname' type='text' id='fullname' placeholder='Type your fullname' required={true} seter={setFullname} />
+              <Input value={infoData.data.fullName} label='Fullname' type='text' id='fullname' placeholder='Type your fullname' required={true} seter={setFullname} />
+          
             </div>
             <div className="relative z-0 w-full mb-6 group">
-              <Input label='Telephone' type='text' id='telephone' placeholder='+xxxxxxxxxxxx' required={true} seter={setTelephone} />
+              <Input value={infoData.data.Telephone} label='Telephone' type='text' id='telephone' placeholder='+xxxxxxxxxxxx' required={true} seter={setTelephone} />
             </div>
           </div>
           <div className="grid md:grid-cols-2 md:gap-6">
             <div className="relative z-0 w-full mb-6 group">
-              <Input label='Address Email' type='text' id='address' placeholder='Type your address' required={true} seter={setEmail} />
+              <Input value={infoData.data.Email} label='Address Email' type='text' id='address' placeholder='Type your address' required={true} seter={setEmail} />
             </div>
             <div className="relative z-0 w-full mb-6 group">
               <label
@@ -111,15 +129,15 @@ const CheckOut = () => {
               >
                 Select your level
               </label>
-              <Select state={setLevel} id='level' />
+              <Select value={infoData.data.Level} state={setLevel} id='level' />
             </div>
           </div>
           <div className="grid md:grid-cols-2 md:gap-6">
             <div className="relative z-0 w-full mb-6 group">
-              <Input label='Age' type='number' id='age' placeholder='18' required={true} seter={setAge} />
+              <Input value={infoData.data.Age} label='Age' type='number' id='age' placeholder='18' required={true} seter={setAge} />
             </div>
             <div className="relative z-0 w-full mb-6 group">
-              <Input label='Guests' type='number' id='Guests' placeholder='2' required={true} seter={setGuests} />
+              <Input value={infoData.data.Guest} label='Guests' type='number' id='Guests' placeholder='2' required={true} seter={setGuests} />
             </div>
           </div>
         </form>
@@ -139,7 +157,7 @@ const CheckOut = () => {
         {data.map((items) => {
 
           return (
-            <li key={items.id} className={services.includes(items.id) ? "border-2 border-green-400 rounded-lg p-2" : "border-2 border-gray-400 rounded-lg p-2"}
+            <li key={items.id} className={services.includes(items.id) ? "cursor-pointer border-2 border-green-400 rounded-lg p-2" : "cursor-pointer border-2 border-[#dce0e5] rounded-lg p-2"}
               onClick={
                 () => {
                   if (services.includes(items.id)) {

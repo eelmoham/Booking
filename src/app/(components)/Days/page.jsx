@@ -6,10 +6,13 @@ import {setOrder} from '../Shared/Days';
 // fin
 import { useEffect, useState} from 'react';
 import DatePicker from './DatePicker';
+import { useSelect } from '@nextui-org/react';
+import { useSelector } from 'react-redux';
 
 
 
 export default function Days() {
+    const DaysInfo = useSelector((state) => state.Days.data);
     const [fromDate, setFromeDate] = useState(new Date());
     const [toDate, setToDate] = useState(new Date(new Date().getTime() + (7 * 24 * 60 * 60 * 1000)));
     const [disabled, setDisabled] = useState(true);
@@ -17,14 +20,14 @@ export default function Days() {
 
     useEffect(() => {
         dispatch(setOrder({from: fromDate.toString(), to: toDate.toString(), offer: disabled}))
-    }, [fromDate])
+    }, [fromDate, toDate])
     return (
         <div className=" flex flex-col justify-center items-center w-full h-1/2 m-auto bg-[#ffffff]">
             <div className="w-full flex justify-center mr-2 ">
                 <div className="md:flex justify-center items-center gap-10">
                     <div className="inline-flex items-center">
                         <label className="relative flex cursor-pointer items-center rounded-full p-3" htmlFor="Sivendays" data-ripple-dark="true">
-                            <input defaultChecked
+                            <input checked={true}
                                 onChange={
                                     (e) => {
                                         setDisabled(true);
@@ -70,7 +73,7 @@ export default function Days() {
             </div>
             <div className="w-full justify-center flex items-center">
                 <div className=''>
-                    <DatePicker seter={setFromeDate} NewdefaultDate={fromDate} />
+                    <DatePicker seter={setFromeDate} NewdefaultDate={DaysInfo.from?new Date(DaysInfo.from):fromDate} />
                 </div>
                 <span className="mx-4 text-gray-500">to</span>
                 <div className={disabled?'opacity-25 pointer-events-none':''}>
