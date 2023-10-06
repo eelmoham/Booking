@@ -35,7 +35,14 @@ const Pagination = ({Pathname}) => {
 
     useEffect(() => {
         if (Pathname === "/Days")
-            setSubmeted(true)
+        {
+            if (!daysData.from)
+                setSubmeted(false)
+            else if (daysData.offer === false && !daysData.to)
+                setSubmeted(false)
+            else
+                setSubmeted(true)
+        }
         if (Pathname === '/CheckOut') {
             if (!infoData.fullName)
                 setSubmeted(false)
@@ -48,12 +55,12 @@ const Pagination = ({Pathname}) => {
 
     if (!(Pathname === '/' || Pathname === '/Packs' || paths.indexOf(Pathname.split('/')[1]) == 0))
         return (
-            <div className="w-full flex justify-between bg-white pt-3 pb-[.6rem]">
+            <div className="w-full flex justify-between bg-white pt-3 pb-[.6rem] text-black">
                 
-                <Link className="p-2 mx-2" href={handlePrev()}>Prev</Link>
+                <Link className="text-black p-2 mx-2" href={handlePrev()}>Prev</Link>
                 {
                     (Pathname == '/Hostel' || Pathname == '/facture') ? null :
-                    <Link className={submeted?"p-2 mx-2":'p-2 mx-2 opacity-20'} href={handleNext()}>Next</Link>
+                    <Link className={submeted?" text-black p-2 mx-2":'p-2 mx-2 opacity-20'} href={handleNext()}>Next</Link>
                 }
             </div>
         );

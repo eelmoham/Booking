@@ -1,12 +1,7 @@
 'use client';
 import './globals.css'
-
-import { Inter } from 'next/font/google'
 import Steps from './(components)/Steps/page'
 import Pagination from './(components)/Pagination/page';
-
-const inter = Inter({ subsets: ['latin'] })
-
 import { store } from './store'
 import { Provider } from 'react-redux'
 import { usePathname } from 'next/navigation';
@@ -35,7 +30,7 @@ export default function RootLayout({ children }) {
                         <div id='ly' className='md:w-[1300px] w-full mdh:h-[90%] md:h-[55%] h-full mx-3 xl:mx-auto border flex justify-between bg-[#fff] rounded-xl p-1'>
                             <Steps />
                             <div className='w-full h-full relative flex flex-col bg-transparent'>
-                                <header className='flex justify-center items-center w-full bg-white pb-3 pt-1'>
+                                <header className='flex justify-center items-center w-full bg-white pb-3 pt-1 text-black'>
                                     {
                                         etapsData[Pathname.substring(1).split('/')[0]]
                                     }
