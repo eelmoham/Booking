@@ -22,8 +22,8 @@ export default function Days() {
             setToDate(new Date(fromDate.getTime() + (7 * 24 * 60 * 60 * 1000)))
             dispatch(setOrder({ from: fromDate.toString(), to: toDate.toString(), offer: disabled }))
         }
-        else
-            dispatch(setOrder({ from: fromDate.toString(), to: toDate.toString(), offer: disabled }))
+        // else
+        //     dispatch(setOrder({ from: fromDate.toString(), to: toDate.toString(), offer: disabled }))
     }, [fromDate])
 
     useEffect(() => {

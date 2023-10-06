@@ -39,7 +39,8 @@ export const Days = createSlice({
       }
       else if (action.payload.from !== null && action.payload.to !== null && action.payload.offer === false) {
         state.dataExist = true;
-        action.payload.numberOfDays = ((new Date(action.payload.to).getDate() - new Date(action.payload.from).getDate()) / (1000 * 60 * 60 * 24))
+        //calculate number of days
+        action.payload.numberOfDays = Math.floor((Date.parse(action.payload.to) - Date.parse(action.payload.from)) / 86400000);
       }
       
     },

@@ -17,18 +17,29 @@ const Facture = () => {
   const isDaysDataLoading = useSelector((state) => state.Days.dataExist);
 
   const TotalPrice = () => {
-    let total = 0;
-    total += packData.day_price * daysData.numberOfDays * serviceData.Guest;
-    total += hostelData.day_price * daysData.numberOfDays * serviceData.Guest;
-    console.log("total", total);
+   let Total = 0;
+
+    if (packData.with_hosting === '1') {
+      //kin hostel
+      Total = (daysData.numberOfDays * hostelData.day_price) + (daysData.numberOfDays * packData.day_price);
+    }
+    else {
+      console.log("packData.day_price : " + packData.day_price);
+      console.log("daysData.numberOfDays : " + daysData.numberOfDays);
+      Total = (daysData.numberOfDays * packData.day_price);
+    }
+    Total * serviceData.Guest
+    //add price of each service
     serviceData.service.map((service) => {
-      if (service)
-        total += service.price;
+      if (service) {
+        Total += service.price;
+      }
+      // else
+      //   return null;
     })
-    return total;
+    return (Total);
   }
 
-  console.log("service : " + serviceData.service.length);
 
   return (
     <div className=" mx-2 my-auto">
