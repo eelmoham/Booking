@@ -59,7 +59,7 @@ const Pagination = ({Pathname}) => {
                 
                 <Link className="text-black p-2 mx-2" href={handlePrev()}>Prev</Link>
                 {
-                    (Pathname == '/Hostel' || Pathname == '/facture') ? null :
+                    (Pathname == '/Hostel' || Pathname == '/facture' || Pathname == '/Days') ? null :
                     <Link className={submeted?" text-black p-2 mx-2":'p-2 mx-2 opacity-20'} href={handleNext()}>Next</Link>
                 }
             </div>

@@ -7,6 +7,7 @@ import { setOrder } from '../Shared/Days';
 import { use, useEffect, useState } from 'react';
 import DatePicker from './DatePicker';
 import { useSelector } from 'react-redux';
+import Link from 'next/link';
 
 
 
@@ -16,14 +17,13 @@ export default function Days() {
     const [toDate, setToDate] = useState(new Date(new Date().getTime() + (7 * 24 * 60 * 60 * 1000)));
     const [disabled, setDisabled] = useState(true);
     const dispatch = useDispatch()
+    const [Submited , setSubmited] = useState(false);
 
     useEffect(() => {
         if (fromDate && disabled){
             setToDate(new Date(fromDate.getTime() + (7 * 24 * 60 * 60 * 1000)))
             dispatch(setOrder({ from: fromDate.toString(), to: toDate.toString(), offer: disabled }))
         }
-        // else
-        //     dispatch(setOrder({ from: fromDate.toString(), to: toDate.toString(), offer: disabled }))
     }, [fromDate])
 
     useEffect(() => {
@@ -34,6 +34,17 @@ export default function Days() {
     const handleRadioChange = (e) => {
         setDisabled(e.target.value === 'true');
     };
+
+    const handleLinkChange = () => {
+        //if from > to not Submit
+        if (fromDate > toDate) {
+            return;
+        }else
+        {
+            //change the page to the next page (checkout page)
+            location.href = '/CheckOut';
+        }
+    }
 
     return (
         <div className=" flex flex-col justify-center items-center w-full h-1/2 m-auto bg-[#ffffff]">
@@ -69,7 +80,7 @@ export default function Days() {
                 </div>
                 <span className="mx-4 text-gray-500">to</span>
                 {
-                    disabled ? <div className='border py-2 px-1 pr-9 flex gap-3 items-center rounded-lg justify-between bg-[#f9fafb]'>
+                    disabled ? <div className=' opacity-25 border py-2 px-1 pr-9 flex gap-3 items-center rounded-lg justify-between bg-[#f9fafb]'>
                         <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
                        <span className=' text-sm'>
                         {toDate.toDateString()}
@@ -83,6 +94,8 @@ export default function Days() {
                     <DatePicker name="TO" seter={setToDate} defaultDate={toDate} />
                 </div> */}
             </div>
+            <Link className={Submited?"absolute bottom-1 right-1 text-black p-2 mx-2":" opacity-20 absolute bottom-1 right-1 text-black p-2 mx-2"} href="">Next</Link>
+            
         </div>
     );
 }

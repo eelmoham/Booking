@@ -24,41 +24,32 @@ interface Hostel {
     pack_price: number | null;
     day_price: number | null;
     picture: string | null;
-  }
+}
 
 const CardHostel: React.FC<Hostel> = ({ id, title, short_description, description, pack_price, day_price, picture }) => {
     const dispatch = useDispatch()
     return (
         <Card className="py-4 my-2 sm:mx-2 max-w-[300px] mx-auto">
-            <CardBody className="overflow-visible py-2">
+            <CardHeader className="   overflow-visible pt-1">
                 <Image
                     alt="Card background"
                     className="object-cover rounded-xl"
                     src={`https://booking.tayyurt-surf.com/storage/${picture}`}
                     width={"100%"}
                 />
+            </CardHeader>
+            <CardBody className="flex flex-col w-full items-start">
+                <p className="text-tiny uppercase font-bold ">{title}</p>
+                <small className="text-default-500 pt-2">{short_description}</small>
             </CardBody>
-            <CardHeader className="pl-5 pb-0 pt-2 flex-col items-start w-[100%]">
-                <p className="text-tiny uppercase font-bold">{title}</p>
-                <small className="text-default-500">{short_description}</small>
-                <Link
+            <Link
                     onClick={
                         () => {
-                            dispatch(setOrder({id:id, title:title, short_description:short_description, description:description, pack_price:pack_price, day_price:day_price, picture:picture}))
-                            console.log('====================================');
-                            console.log('id', id);
-                            console.log('title', title);
-                            console.log('short_description', short_description);
-                            console.log('description', description);
-                            console.log('pack_price', pack_price);
-                            console.log('day_price', day_price);
-                            console.log('picture', picture);
-                            console.log('====================================');
+                            dispatch(setOrder({ id: id, title: title, short_description: short_description, description: description, pack_price: pack_price, day_price: day_price, picture: picture }))
                         }
                     }
                     href="Days"
-                    className="font-bold text-white text-large bg-green-500 px-2 py-1 mt-1 rounded-lg" >select</Link>
-            </CardHeader>
+                    className="mx-auto mt-2 inline-flex items-center rounded-lg bg-green-400 px-4 py-2 text-center text-sm font-medium text-white hover:bg-green-500 focus:outline-none focus:ring-4 focus:ring-green-100" >select</Link>
         </Card>
     );
 }
