@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Button } from 'flowbite-react';
-const Submet = ({ days, hostel, info, packs }) => {
+import Link from 'next/link';
+const Submet = ({ days, hostel, info, packs, siter }) => {
     let servicesID = ''
 
     info.service.map((service) => {
@@ -28,8 +29,9 @@ const Submet = ({ days, hostel, info, packs }) => {
     }
     return (
         <div>
-            <Button className='bg-green-500 text-white'
+            <Link className='bg-green-500 text-white'
                 onClick={() => {
+                    siter(false)
                     axios.post('https://booking.tayyurt-surf.com/api/v1/bookings', order)
                         .then(res => {
                         }).catch(error => {
@@ -39,7 +41,7 @@ const Submet = ({ days, hostel, info, packs }) => {
                 }}
             >
                 Submet
-            </Button>
+            </Link>
         </div>
     )
 }

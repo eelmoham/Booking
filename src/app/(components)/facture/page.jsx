@@ -2,6 +2,8 @@
 // import { RootState } from "@/app/store"; needed for typescript.
 import { useSelector } from "react-redux";
 import Submet from './submet';
+import Loading from "../Loading/page";
+import { useState } from "react";
 const Facture = () => {
   const hostelData = useSelector((state) => state.Hostel.data);
 
@@ -12,6 +14,7 @@ const Facture = () => {
 
   const daysData = useSelector((state) => state.Days.data);
 
+  const [hidden, setHidden] = useState(true);
 
   isPackDataLoading ? null : location.href = "/Packs";8
   const TotalPrice = () => {
@@ -33,7 +36,6 @@ const Facture = () => {
     })
     return (Total);
   }
-
 
   return (
     <div className=" mx-2  h-full flex">
@@ -152,9 +154,11 @@ const Facture = () => {
         </div>
       </div>
 
-      <div className=" absolute bottom-2 right-1">
-        <Submet days={daysData} hostel={hostelData} info={serviceData} packs={packData} />
+      <div className=" absolute bottom-2 right-1"
+      >
+        <Submet days={daysData} hostel={hostelData} info={serviceData} packs={packData} siter={setHidden} />
       </div>
+      <Loading hidden={hidden} />
     </div>
   )
 };

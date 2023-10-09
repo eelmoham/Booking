@@ -91,9 +91,7 @@ const CheckOut = () => {
 
   if (loading) {
     return (
-      <div className="w-full flex justify-center items-center m-auto text-green-500">
-        Loading...
-      </div>
+      <Loading hidden={false} />
     );
   }
 
