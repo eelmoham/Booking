@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { Days } from './(components)/Shared/Days';
 import { Hostel } from './(components)/Shared/Hostel';
 import { Pack } from './(components)/Shared/Pack';
-import { informationsOfer } from './(components)/Shared/Info';
+import { informationsOfer } from './(components)/Shared/info';
 
 export const store = configureStore({
   reducer: {

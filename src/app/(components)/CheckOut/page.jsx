@@ -2,12 +2,12 @@
 
 import React, { useState, useEffect, use } from "react";
 // components
-import Input from "./Input";
-import Select from "./Select";
-import Service from "./Service";
+import Input from "./input";
+import Select from "./select";
+import Service from "./service";
 // reduce
 import { useSelector, useDispatch } from 'react-redux'
-import { setOrder } from "../Shared/Info";
+import { setOrder } from "../Shared/info";
 import Loading from "../Loading/page";
 //fin
 
