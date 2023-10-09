@@ -30,11 +30,8 @@ const Submet = ({ days, hostel, info, packs }) => {
         <div>
             <Button className='bg-green-500 text-white'
                 onClick={() => {
-                    console.log(order)
                     axios.post('https://booking.tayyurt-surf.com/api/v1/bookings', order)
                         .then(res => {
-                            console.log("*> ", res);
-                            console.log("*.*.*.*> ", res.data);
                         }).catch(error => {
                             console.error("Error:", error);
                         });

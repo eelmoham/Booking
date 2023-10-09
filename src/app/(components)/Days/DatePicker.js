@@ -10,7 +10,7 @@ const DatePicker = ({ name, seter, defaultDate }) => {
         todayBtn: false,
         clearBtn: false,
         maxDate: new Date("01/01/2030"),
-        minDate: new Date("01/01/1950"),
+        minDate: new Date(),
         theme: {
             background: "bg-white",
             todayBtn: "",
@@ -43,7 +43,6 @@ const DatePicker = ({ name, seter, defaultDate }) => {
     }
 
     useEffect(() => {
-        console.log(name, defaultDate)
         options.defaultDate = new Date(defaultDate)
         options.theme.selected = new Date(defaultDate)
     }, [])

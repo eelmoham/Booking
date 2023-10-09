@@ -3,19 +3,17 @@
 import { useSelector } from "react-redux";
 import Submet from './submet';
 const Facture = () => {
-  // Assuming 'Hostel' is the name of your slice
   const hostelData = useSelector((state) => state.Hostel.data);
-  const isDataLoading = useSelector((state) => state.Hostel.dataExist);
 
   const packData = useSelector((state) => state.Pack.data);
   const isPackDataLoading = useSelector((state) => state.Pack.dataExist);
 
   const serviceData = useSelector((state) => state.Info.data);
-  const isServiceDataLoading = useSelector((state) => state.Info.dataExist);
 
   const daysData = useSelector((state) => state.Days.data);
-  const isDaysDataLoading = useSelector((state) => state.Days.dataExist);
 
+
+  isPackDataLoading ? null : location.href = "/Packs";8
   const TotalPrice = () => {
     let Total = 0;
 
@@ -140,7 +138,7 @@ const Facture = () => {
                   })
                 }
               </div>
-            </div> : console.log("service : " + serviceData.service.length) && null
+            </div> : null
         }
         <div className="flex flex-col">
           <div className="relative flex items-center ">

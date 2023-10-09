@@ -8,6 +8,7 @@ import Service from "./Service";
 // reduce
 import { useSelector, useDispatch } from 'react-redux'
 import { setOrder } from "../Shared/Info";
+import Loading from "../Loading/page";
 //fin
 
 const CheckOut = () => {
@@ -22,7 +23,7 @@ const CheckOut = () => {
   const [guests, setGuests] = useState(1);
   const [level, setLevel] = useState('Beginner');
   const [services, setServices] = useState(infoData.dataExist?infoData.data.service.map((item) => item.id):[]);
-  
+  const isPackData = useSelector((state) => state.Pack.dataExist);
 
   
 
@@ -61,6 +62,8 @@ const CheckOut = () => {
   }, [services, fullname, telephone, email, guests, level, age]);
 
   useEffect(() => {
+    if(isPackData == false)
+      location.href = "/Packs";
     const fetchData = async () => {
       try {
         const res = await fetch(
@@ -101,12 +104,10 @@ const CheckOut = () => {
       </div>
     );
   }
-  console.log(infoData.data)
-  console.log(services)
 
   return (
-    <div className="w-full flex flex-col m-auto">
-      <div className="w-full flex flex-row flex-wrap justify-center">
+    <div className="w-full flex flex-col m-auto h-full relative">
+      <div className="w-full flex flex-row flex-wrap justify-center p-4 ">
         <form action="" className="w-full px-4">
           <div className="grid md:grid-cols-2 md:gap-6">
             <div className="relative z-0 w-full mb-6 group">
@@ -144,19 +145,19 @@ const CheckOut = () => {
 
       <div className="inline-flex items-center justify-center w-full">
         <hr className="w-64 h-1 my-4 bg-gray-200 border-0 rounded" />
-        <div className="absolute px-4 -translate-x-1/2 bg-[#f3f3f3] left-1/2">
+        <div className="absolute px-4 -translate-x-1/2 bg-[#f8faf5] left-1/2">
           EXTRA SERVICES
         </div>
       </div>
 
       <ul
-        className="grid w-full gap-6 md:grid-cols-3 items-center border p-2"
+        className="grid w-full gap-6 md:grid-cols-3 items-center p-2"
         id="Services"
       >
         {data.map((items) => {
 
           return (
-            <li key={items.id} className={services.includes(items.id) ? "cursor-pointer border-2 border-green-400 rounded-lg p-2" : "cursor-pointer border-2 border-[#dce0e5] rounded-lg p-2"}
+            <li key={items.id} className={services.includes(items.id) ? "cursor-pointer bg-white border-2 border-green-400 rounded-lg p-2" : "cursor-pointer bg-white border-2 border-[#0000000a] rounded-lg p-2"}
               onClick={
                 () => {
                   if (services.includes(items.id)) {
@@ -173,6 +174,7 @@ const CheckOut = () => {
           );
         })}
       </ul>
+      <Loading hidden={true} />
     </div>
   );
 };

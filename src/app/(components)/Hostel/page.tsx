@@ -2,18 +2,25 @@
 
 import React, { useState, useEffect } from 'react';
 import CardHostel from './cards';
+import { useSelector } from "react-redux";
+import { RootState } from '@/app/store';
+import Loading from '../Loading/page';
+
 
 const Hostel = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-
-
+  const isPackData = useSelector((state: RootState) => state.Pack.dataExist);
+  const [hidden, setHidden] = useState(true);
+  
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch('https://booking.tayyurt-surf.com/api/v1/rooms');
-
-        if (!res.ok) {
+    if(isPackData == false)
+    location.href = "/Packs";
+  const fetchData = async () => {
+    try {
+      const res = await fetch('https://booking.tayyurt-surf.com/api/v1/rooms');
+      
+      if (!res.ok) {
           throw new Error('Failed to fetch data');
         }
         const jsonData = await res.json();
@@ -26,19 +33,21 @@ const Hostel = () => {
         setLoading(false);
       }
     };
-
+    
     fetchData();
   }, []);
 
   if (loading) {
-    return <div className='w-full flex justify-center items-center m-auto text-green-500'>Loading...</div>;
+    return (
+      <Loading hidden={false} />
+    )
   }
 
   if (!Array.isArray(data)) {
     return <div className='w-full flex justify-center items-center m-auto text-red-500'>Data is not in the expected format</div>;
   }
   return (
-      <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 m-auto" id="Rooms">
+      <div className="flex w-full h-full flex-row flex-wrap justify-center items-center" id="Rooms">
         {
           data.map((items: any, index: number) => (
             <CardHostel
@@ -50,9 +59,11 @@ const Hostel = () => {
               description={items.description || "No description available"}
               pack_price={items.pack_price || 0}
               day_price={items.day_price || 0}
+              siter={setHidden}
             />
           ))
         }
+        <Loading hidden={hidden} />
       </div>
   );
 }
