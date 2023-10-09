@@ -63,7 +63,7 @@ const Facture = () => {
                 <div className="w-2 h-2 rounded-full bg-slate-700 absolute left-[-4px]"></div>
                 <h1 className="text-gray-400 ml-2">Rooms</h1>
               </div>
-              <div className="flex gap-4 ml-5">
+              <div className="flex gap-4 ml-5 text-black">
                 <div>{hostelData.title}</div>
                 {
                   daysData.offer ? <div className="text-green-500">Included Pack</div> : <div className="text-green-500"> {hostelData.day_price}€/Day/Guest</div>
@@ -81,8 +81,8 @@ const Facture = () => {
           </div>
           <div className="flex flex-col ml-3">
             <div className="flex gap-4">
-              <div> <span className="text-gray-400"> from :</span> {daysData.from?.substring(0, 15)}</div>
-              <div> <span className="text-gray-400"> to : </span>{daysData.to?.substring(0, 15)}</div>
+              <div className="text-gray-700"> <span className="text-black"> from :</span> {daysData.from?.substring(0, 15)}</div>
+              <div className="text-gray-700"> <span className="text-black"> to : </span>{daysData.to?.substring(0, 15)}</div>
               {/* <span>=</span>
               <div className="text-green-500"> {daysData.numberOfDays} Days</div> */}
             </div>
@@ -97,22 +97,22 @@ const Facture = () => {
           </div>
           <div className="ml-3">
             <div className="flex gap-3">
-              <span className="text-gray-300">full name :</span> <div className="">{serviceData.fullName}</div>
+              <span className="text-black">full name :</span> <div className="text-gray-700">{serviceData.fullName}</div>
             </div>
             <div className="flex gap-3">
-              <span className="text-gray-300">email :</span> <div className="">{serviceData.Email}</div>
+              <span className="text-black">email :</span> <div className="text-gray-700">{serviceData.Email}</div>
             </div>
             <div className="flex gap-3">
-              <span className="text-gray-300">phone :</span> <div className="">{serviceData.Telephone}</div>
+              <span className="text-black">phone :</span> <div className="text-gray-700">{serviceData.Telephone}</div>
             </div>
             <div className="flex gap-3">
-              <span className="text-gray-300">Level :</span> <div className="">{serviceData.Level}</div>
+              <span className="text-black">Level :</span> <div className="text-gray-700">{serviceData.Level}</div>
             </div>
             <div className="flex gap-3">
-              <span className="text-gray-300">Age :</span> <div className="">{serviceData.Age}</div>
+              <span className="text-black">Age :</span> <div className="text-gray-700">{serviceData.Age}</div>
             </div>
             <div className="flex gap-3">
-              <span className="text-gray-300">Guests :</span> <div className="">{serviceData.Guest}</div>
+              <span className="text-black">Guests :</span> <div className="text-gray-700">{serviceData.Guest}</div>
             </div>
           </div>
         </div>
@@ -130,7 +130,7 @@ const Facture = () => {
                     if (service) {
                       return (
                         <div key={serviceData.fullName + '-' + service.title} className="flex flex-col">
-                          <div>{service.title}</div>
+                          <div className="text-black">{service.title}</div>
                           <div className="text-green-500"> {service.price}€</div>
                         </div>
                       )
@@ -145,7 +145,7 @@ const Facture = () => {
         <div className="flex flex-col">
           <div className="relative flex items-center ">
             <div className="w-2 h-2 rounded-full bg-slate-700 absolute left-[-4px]"></div>
-            <h1 className="text-gray-400 ml-2">Toltal</h1>
+            <h1 className="text-gray-400 ml-2">Total</h1>
           </div>
           <div className="flex gap-4 ml-5">
             <div className="text-bold text-black">{TotalPrice()}€</div>

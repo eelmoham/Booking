@@ -29,7 +29,7 @@ const Submet = ({ days, hostel, info, packs, siter }) => {
     }
     return (
         <div>
-            <Link className='bg-green-500 text-white'
+            <button className='bg-green-500 text-white'
                 onClick={() => {
                     siter(false)
                     axios.post('https://booking.tayyurt-surf.com/api/v1/bookings', order)
@@ -41,7 +41,7 @@ const Submet = ({ days, hostel, info, packs, siter }) => {
                 }}
             >
                 Submet
-            </Link>
+            </button>
         </div>
     )
 }

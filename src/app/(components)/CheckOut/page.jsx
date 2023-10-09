@@ -143,7 +143,7 @@ const CheckOut = () => {
 
       <div className="inline-flex items-center justify-center w-full">
         <hr className="w-64 h-1 my-4 bg-gray-200 border-0 rounded" />
-        <div className="absolute px-4 -translate-x-1/2 bg-[#f8faf5] left-1/2">
+        <div className="absolute px-4 -translate-x-1/2 bg-[#f8faf5] left-1/2 text-black">
           EXTRA SERVICES
         </div>
       </div>
