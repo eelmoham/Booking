@@ -3,7 +3,7 @@
 import React, { useState, useEffect, use } from "react";
 // components
 import Input from "./input";
-import Select from "./select";
+import Select from "./Select";
 import Service from "./service";
 // reduce
 import { useSelector, useDispatch } from 'react-redux'
