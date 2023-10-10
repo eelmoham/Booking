@@ -62,8 +62,8 @@ const Packs = () => {
 
 
   return (
-    <div className="relative flex w-full h-full ">
-      <div className=" flex w-full flex-row flex-wrap justify-center items-center my-4 " id="Packs">
+    <div className={hidden === false?"relative flex w-full h-full overflow-hidden ":""}>
+      <div className=" flex w-full flex-row flex-wrap justify-center items-center my-1 p-4" id="Packs">
         {
           data.map((pack: any) => (
             <div className="m-1 w-full rounded-lg border border-gray-200 bg-white shadow sm:max-w-xs" key={pack.id}>

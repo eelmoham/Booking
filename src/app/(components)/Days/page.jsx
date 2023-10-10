@@ -21,12 +21,16 @@ export default function Days() {
     const isPackData = useSelector((state) => state.Pack.dataExist);
 
     useEffect(() => {
-        if(isPackData == false)
+        if (isPackData == false)
             location.href = "/Packs";
-    }
-    , [])
+        if (DaysInfo.dataExist == true) {
+            setFromDate(new Date(DaysInfo.data.from))
+            setToDate(new Date(DaysInfo.data.to))
+            setDisabled(DaysInfo.data.offer)
+        }
+    }, [])
     useEffect(() => {
-        if (fromDate && disabled) {
+        if (fromDate && disabled && DaysInfo.dataExist === false) {
             setToDate(new Date(fromDate.getTime() + (7 * 24 * 60 * 60 * 1000)))
             setSubmited(true);
             dispatch(setOrder({ from: fromDate.toString(), to: toDate.toString(), offer: disabled }))
@@ -42,7 +46,7 @@ export default function Days() {
     }, [disabled])
 
     useEffect(() => {
-        if (toDate && !disabled && fromDate) {
+        if (toDate && !disabled && fromDate && DaysInfo.dataExist === false) {
             if (fromDate > toDate) {
                 setSubmited(false);
                 alert("Please choose a date after the start date");
@@ -68,7 +72,7 @@ export default function Days() {
                             checked={disabled}
                             type="radio"
                             name="bordered-radio"
-                            value="true"
+                            value={DaysInfo.data.offer == true ? "true" : "false"}
                             onChange={handleRadioChange}
                             id="offer" className="w-4 h-4 text-green-400 bg-gray-100 border-gray-300 focus:ring-green-500 dark:focus:ring-green-400 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                         <label className=" bg-green-100 text-green-800 text-xs font-medium mx-2 px-2.5 py-0.5 rounded-full" htmlFor="offer">
@@ -77,12 +81,15 @@ export default function Days() {
                     </div>
                     <div className="flex items-center pl-4">
                         <input
+                            checked={!disabled}
                             type="radio"
                             name="bordered-radio"
-                            value="false"
+                            value={DaysInfo.data.offer == false ? "true" : "false"}
                             onChange={handleRadioChange}
                             id="custom" className="w-4 h-4 text-green-400 bg-gray-100 border-gray-300 focus:ring-green-500 dark:focus:ring-green-400 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                        <label htmlFor="custom" className="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Checked state</label>
+                        <label htmlFor="custom" className="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                            Custom dates
+                        </label>
                     </div>
                 </div>
             </div>
@@ -103,7 +110,7 @@ export default function Days() {
                         </div>
                 }
             </div>
-            <Link className={Submited ? "absolute bottom-1 right-1 text-black p-2 mx-2" : " pointer-events-none opacity-30 absolute bottom-1 right-1 text-black p-2 mx-2"} href="/CheckOut">Next</Link>
+            <Link className={Submited ? "absolute bottom-1 right-1 p-2 mx-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-400" : " pointer-events-none opacity-30 absolute bottom-1 right-1 p-2 mx-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-400"} href="/CheckOut">Next</Link>
 
         </div>
     );

@@ -9,6 +9,7 @@ import Service from "./service";
 import { useSelector, useDispatch } from 'react-redux'
 import { setOrder } from "../Shared/info";
 import Loading from "../Loading/page";
+import Link from "next/link";
 //fin
 
 const CheckOut = () => {
@@ -22,10 +23,11 @@ const CheckOut = () => {
   const [age, setAge] = useState(18);
   const [guests, setGuests] = useState(1);
   const [level, setLevel] = useState('Beginner');
-  const [services, setServices] = useState(infoData.dataExist?infoData.data.service.map((item) => item.id):[]);
+  const [services, setServices] = useState(infoData.dataExist ? infoData.data.service.map((item) => item.id) : []);
   const isPackData = useSelector((state) => state.Pack.dataExist);
+  const [hidden, setHidden] = useState(true);
 
-  
+
 
   useEffect(() => {
     if (infoData.dataExist === true) {
@@ -42,7 +44,8 @@ const CheckOut = () => {
           }
         })
       };
-    dispatch(setOrder(orderData));}
+      dispatch(setOrder(orderData));
+    }
     else if (fullname !== null && telephone !== null && email !== null && age >= 1 && guests >= 1 && level !== null && infoData.dataExist === false) {
       const orderData = {
         fullName: fullname,
@@ -62,7 +65,7 @@ const CheckOut = () => {
   }, [services, fullname, telephone, email, guests, level, age]);
 
   useEffect(() => {
-    if(isPackData == false)
+    if (isPackData == false)
       location.href = "/Packs";
     const fetchData = async () => {
       try {
@@ -104,75 +107,83 @@ const CheckOut = () => {
   }
 
   return (
-    <div className="w-full flex flex-col m-auto h-full relative">
-      <div className="w-full flex flex-row flex-wrap justify-center p-4 ">
-        <form action="" className="w-full px-4">
-          <div className="grid md:grid-cols-2 md:gap-6">
-            <div className="relative z-0 w-full mb-6 group">
-              <Input value={infoData.data.fullName} label='Fullname' type='text' id='fullname' placeholder='Type your fullname' required={true} seter={setFullname} />
-          
-            </div>
-            <div className="relative z-0 w-full mb-6 group">
-              <Input value={infoData.data.Telephone} label='Telephone' type='text' id='telephone' placeholder='+xxxxxxxxxxxx' required={true} seter={setTelephone} />
-            </div>
-          </div>
-          <div className="grid md:grid-cols-2 md:gap-6">
-            <div className="relative z-0 w-full mb-6 group">
-              <Input value={infoData.data.Email} label='Address Email' type='text' id='address' placeholder='Type your address' required={true} seter={setEmail} />
-            </div>
-            <div className="relative z-0 w-full mb-6 group">
-              <label
-                htmlFor="level"
-                className="block mb-2 text-sm font-medium text-gray-900"
-              >
-                Select your level
-              </label>
-              <Select value={infoData.data.Level} state={setLevel} id='level' />
-            </div>
-          </div>
-          <div className="grid md:grid-cols-2 md:gap-6">
-            <div className="relative z-0 w-full mb-6 group">
-              <Input value={infoData.data.Age} label='Age' type='number' id='age' placeholder='18' required={true} seter={setAge} />
-            </div>
-            <div className="relative z-0 w-full mb-6 group">
-              <Input value={infoData.data.Guest} label='Guests' type='number' id='Guests' placeholder='2' required={true} seter={setGuests} />
-            </div>
-          </div>
-        </form>
-      </div>
+    <div className="w-full flex flex-col m-auto h-full ">
+      <div className="relative w-full h-full">
+        <div className="w-full flex flex-row flex-wrap justify-center p-4 ">
+          <form action="" className="w-full px-4">
+            <div className="grid md:grid-cols-2 md:gap-6">
+              <div className="relative z-0 w-full mb-6 group">
+                <Input value={infoData.data.fullName} label='Fullname' type='text' id='fullname' placeholder='Type your fullname' required={true} seter={setFullname} />
 
-      <div className="inline-flex items-center justify-center w-full">
-        <hr className="w-64 h-1 my-4 bg-gray-200 border-0 rounded" />
-        <div className="absolute px-4 -translate-x-1/2 bg-[#f8faf5] left-1/2 text-black">
-          EXTRA SERVICES
+              </div>
+              <div className="relative z-0 w-full mb-6 group">
+                <Input value={infoData.data.Telephone} label='Telephone' type='text' id='telephone' placeholder='+xxxxxxxxxxxx' required={true} seter={setTelephone} />
+              </div>
+            </div>
+            <div className="grid md:grid-cols-2 md:gap-6">
+              <div className="relative z-0 w-full mb-6 group">
+                <Input value={infoData.data.Email} label='Address Email' type='text' id='address' placeholder='Type your address' required={true} seter={setEmail} />
+              </div>
+              <div className="relative z-0 w-full mb-6 group">
+                <label
+                  htmlFor="level"
+                  className="block mb-2 text-sm font-medium text-gray-900"
+                >
+                  Select your level
+                </label>
+                <Select value={infoData.data.Level} state={setLevel} id='level' />
+              </div>
+            </div>
+            <div className="grid md:grid-cols-2 md:gap-6">
+              <div className="relative z-0 w-full mb-6 group">
+                <Input value={infoData.data.Age} label='Age' type='number' id='age' placeholder='18' required={true} seter={setAge} />
+              </div>
+              <div className="relative z-0 w-full mb-6 group">
+                <Input value={infoData.data.Guest} label='Guests' type='number' id='Guests' placeholder='2' required={true} seter={setGuests} />
+              </div>
+            </div>
+          </form>
         </div>
-      </div>
 
-      <ul
-        className="grid w-full gap-6 md:grid-cols-3 items-center p-2"
-        id="Services"
-      >
-        {data.map((items) => {
+        <div className="inline-flex items-center justify-center w-full">
+          <hr className="w-64 h-1 my-4 bg-gray-200 border-0 rounded" />
+          <div className="absolute px-4 -translate-x-1/2 bg-[#f8faf5] left-1/2 text-black">
+            EXTRA SERVICES
+          </div>
+        </div>
 
-          return (
-            <li key={items.id} className={services.includes(items.id) ? "cursor-pointer bg-white border-2 border-green-400 rounded-lg p-2" : "cursor-pointer bg-white border-2 border-[#0000000a] rounded-lg p-2"}
-              onClick={
-                () => {
-                  if (services.includes(items.id)) {
-                    setServices(services.filter((item) => item !== items.id))
-                  }
-                  else {
-                    setServices([...services, items.id])
+        <ul
+          className="grid w-full gap-6 md:grid-cols-3 items-center p-2"
+          id="Services"
+        >
+          {data.map((items) => {
+
+            return (
+              <li key={items.id} className={services.includes(items.id) ? "cursor-pointer bg-white border-2 border-green-400 rounded-lg p-2" : "cursor-pointer bg-white border-2 border-[#0000000a] rounded-lg p-2"}
+                onClick={
+                  () => {
+                    if (services.includes(items.id)) {
+                      setServices(services.filter((item) => item !== items.id))
+                    }
+                    else {
+                      setServices([...services, items.id])
+                    }
                   }
                 }
-              }
-            >
-              <Service items={items} services={services} seter={setServices} />
-            </li>
-          );
-        })}
-      </ul>
-      <Loading hidden={true} />
+              >
+                <Service items={items} services={services} seter={setServices} />
+              </li>
+            );
+          })}
+        </ul>
+        <Loading hidden={hidden} />
+      </div>
+      <Link 
+        onClick={() => setHidden(false)}
+        href='/facture'
+        className={infoData.data.fullName?" absolute bottom-1 right-1 bg-green-500 text-white hover:bg-green-400 px-4 py-2 rounded-lg cursor-pointer":"absolute bottom-1 right-1 bg-green-500 text-white hover:bg-green-400 px-4 py-2 rounded-lg opacity-25 pointer-events-none"}>
+        Next {">"}
+      </Link>
     </div>
   );
 };

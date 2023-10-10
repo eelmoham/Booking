@@ -59,8 +59,8 @@ const Pagination = ({Pathname}) => {
                 
                 <Link className="text-black p-2 mx-2" href={handlePrev()}>Prev</Link>
                 {
-                    (Pathname == '/Hostel' || Pathname == '/facture' || Pathname == '/Days') ? null :
-                    <Link className={submeted?" px-7 py-2.5 text-sm font-medium text-green-600 bg-[#b8ff65b0] hover:bg-[#b7ff65e5] focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center":'px-7 py-2.5 text-sm font-medium text-green-600 bg-[#b8ff65b0] hover:bg-[#b7ff65e5] focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center opacity-20'} href={handleNext()}>Next</Link>
+                    (Pathname == '/Hostel' || Pathname == '/facture' || Pathname == '/Days' || Pathname== "/CheckOut") ? null :
+                    <Link className={submeted?"absolute bottom-1 right-1 p-2 mx-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-400" : " pointer-events-none opacity-30 absolute bottom-1 right-1 p-2 mx-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-400"} href={handleNext()}>Next</Link>
                 }
             </div>
         );

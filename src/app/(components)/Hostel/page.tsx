@@ -12,15 +12,15 @@ const Hostel = () => {
   const [loading, setLoading] = useState(true);
   const isPackData = useSelector((state: RootState) => state.Pack.dataExist);
   const [hidden, setHidden] = useState(true);
-  
+
   useEffect(() => {
-    if(isPackData == false)
-    location.href = "/Packs";
-  const fetchData = async () => {
-    try {
-      const res = await fetch('https://booking.tayyurt-surf.com/api/v1/rooms');
-      
-      if (!res.ok) {
+    if (isPackData == false)
+      location.href = "/Packs";
+    const fetchData = async () => {
+      try {
+        const res = await fetch('https://booking.tayyurt-surf.com/api/v1/rooms');
+
+        if (!res.ok) {
           throw new Error('Failed to fetch data');
         }
         const jsonData = await res.json();
@@ -33,7 +33,7 @@ const Hostel = () => {
         setLoading(false);
       }
     };
-    
+
     fetchData();
   }, []);
 
@@ -47,6 +47,7 @@ const Hostel = () => {
     return <div className='w-full flex justify-center items-center m-auto text-red-500'>Data is not in the expected format</div>;
   }
   return (
+    <div className={hidden === false ? "relative overflow-hidden w-full h-full" : " m-auto"}>
       <div className="flex w-full h-full flex-row flex-wrap justify-center items-center" id="Rooms">
         {
           data.map((items: any, index: number) => (
@@ -63,8 +64,9 @@ const Hostel = () => {
             />
           ))
         }
-        <Loading hidden={hidden} />
       </div>
+      <Loading hidden={hidden} />
+    </div>
   );
 }
 export default Hostel
