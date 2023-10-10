@@ -24,13 +24,19 @@ export default function Days() {
         if (isPackData == false)
             location.href = "/Packs";
         if (DaysInfo.dataExist == true) {
-            setFromDate(new Date(DaysInfo.data.from))
-            setToDate(new Date(DaysInfo.data.to))
-            setDisabled(DaysInfo.data.offer)
+            alert("second");
+            setFromDate(new Date(DaysInfo.data.from));
+            setToDate(new Date(DaysInfo.data.to));
+            setDisabled(DaysInfo.data.offer);
+        } else {
+            alert("first");
+            setFromDate(new Date());
+            setToDate(new Date(new Date().getTime() + (7 * 24 * 60 * 60 * 1000)));
+            setDisabled(true);
         }
     }, [])
     useEffect(() => {
-        if (fromDate && disabled && DaysInfo.dataExist === false) {
+        if (fromDate && disabled) {
             setToDate(new Date(fromDate.getTime() + (7 * 24 * 60 * 60 * 1000)))
             setSubmited(true);
             dispatch(setOrder({ from: fromDate.toString(), to: toDate.toString(), offer: disabled }))
@@ -46,7 +52,7 @@ export default function Days() {
     }, [disabled])
 
     useEffect(() => {
-        if (toDate && !disabled && fromDate && DaysInfo.dataExist === false) {
+        if (toDate && !disabled && fromDate) {
             if (fromDate > toDate) {
                 setSubmited(false);
                 alert("Please choose a date after the start date");
