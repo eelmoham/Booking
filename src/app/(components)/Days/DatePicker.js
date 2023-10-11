@@ -42,10 +42,10 @@ const DatePicker = ({ name, seter, defaultDate }) => {
         seter(selectedDate)
     }
 
-    useEffect(() => {
-        options.defaultDate = new Date(defaultDate)
-        options.theme.selected = new Date(defaultDate)
-    }, [])
+    // useEffect(() => {
+    //     options.defaultDate = new Date(defaultDate)
+    //     options.theme.selected = new Date(defaultDate)
+    // }, [])
 
     return (
         <div>

@@ -43,7 +43,7 @@ export const informationsOfer = createSlice({
   reducers: {
     setOrder: (state, action: PayloadAction<infoOrder>) => {
       state.data = action.payload;
-      if (action.payload.fullName  && action.payload.Telephone  && action.payload.Email && action.payload.Level  && action.payload.Age  && action.payload.Guest && action.payload.service.length > 0) {
+      if (action.payload.fullName  && action.payload.Telephone  && action.payload.Email && action.payload.Level  && action.payload.Age  && action.payload.Guest) {
         state.dataExist = true;
       }
     },

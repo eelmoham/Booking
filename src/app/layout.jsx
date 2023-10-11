@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
                                         {children}
                                 </div>
 
-                                <Pagination Pathname={Pathname} />
+                                {/* <Pagination Pathname={Pathname} /> */}
                             </div>
                         </div>
                     </main>

@@ -108,7 +108,7 @@ const CheckOut = () => {
 
   return (
     <div className="w-full flex flex-col m-auto h-full ">
-      <div className="relative w-full h-full">
+      <div className="relative w-full h-full overflow-auto">
         <div className="w-full flex flex-row flex-wrap justify-center p-4 ">
           <form action="" className="w-full px-4">
             <div className="grid md:grid-cols-2 md:gap-6">
@@ -159,7 +159,7 @@ const CheckOut = () => {
           {data.map((items) => {
 
             return (
-              <li key={items.id} className={services.includes(items.id) ? "cursor-pointer bg-white border-2 border-green-400 rounded-lg p-2" : "cursor-pointer bg-white border-2 border-[#0000000a] rounded-lg p-2"}
+              <li key={items.id} className={services.includes(items.id) ? "cursor-pointer bg-white border-2 border-green-400 rounded-lg p-2" : "cursor-pointer bg-white border-2 border-[#dcf4e8] rounded-lg p-2"}
                 onClick={
                   () => {
                     if (services.includes(items.id)) {
@@ -178,12 +178,24 @@ const CheckOut = () => {
         </ul>
         <Loading hidden={hidden} />
       </div>
-      <Link 
-        onClick={() => setHidden(false)}
-        href='/facture'
-        className={infoData.data.fullName?" absolute bottom-1 right-1 bg-green-500 text-white hover:bg-green-400 px-4 py-2 rounded-lg cursor-pointer":"absolute bottom-1 right-1 bg-green-500 text-white hover:bg-green-400 px-4 py-2 rounded-lg opacity-25 pointer-events-none"}>
-        Next {">"}
-      </Link>
+      <div className="w-full flex bg-white pt-3 pb-[.6rem] text-black sticky bottom-0 justify-between">
+        <Link
+          href="/Hostel"
+          className="w-max mx-2 px-4 py-2 bg-inherit hover:bg-gray-200 rounded-md text-black border flex gap-1 items-center cursor-pointer"
+        >
+          <span className=' rotate-180'><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512"><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" /></svg></span>
+          <span>Prev</span>
+        </Link>
+        <Link
+          onClick={() => setHidden(false)}
+          href='/facture'
+          className={infoData.data.fullName ? " bottom-1 right-1 bg-green-500 text-white hover:bg-green-400 px-4 py-2 rounded-lg cursor-pointer" : "absolute bottom-1 right-1 bg-green-500 text-white hover:bg-green-400 px-4 py-2 rounded-lg opacity-25 pointer-events-none"}>
+          <div className="flex gap-1 items-center">
+            <span>Next</span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" fill='white' className='text-white' viewBox="0 0 320 512"> <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" /></svg>
+          </div>
+        </Link>
+      </div>
     </div>
   );
 };
