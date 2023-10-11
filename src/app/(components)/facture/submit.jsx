@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Link from 'next/link';
-const Submet = ({ days, hostel, info, packs, siter }) => {
+const Submit = ({ days, hostel, info, packs, siter }) => {
     let servicesID = ''
 
     info.service.map((service) => {
@@ -30,7 +30,7 @@ const Submet = ({ days, hostel, info, packs, siter }) => {
         <div>
             <Link
                 href="/Thanks"
-                className='px-4 py-4 mx-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-400 flex gap-1 items-center cursor-pointer'
+                className='mx-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-400 flex gap-1 items-center cursor-pointer'
                 onClick={() => {
                     siter(false)
                     axios.post('https://booking.tayyurt-surf.com/api/v1/bookings', order)
@@ -49,4 +49,4 @@ const Submet = ({ days, hostel, info, packs, siter }) => {
         </div>
     )
 }
-export default Submet
+export default Submit
