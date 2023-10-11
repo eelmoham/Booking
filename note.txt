@@ -1,3 +1,2 @@
-margin packet
-loading on change page //kighandir liha
-bg byda service
+priv btn in date picker page if without hostel
+pagenation design in hostel page
