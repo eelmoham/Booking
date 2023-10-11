@@ -19,6 +19,7 @@ export default function Days() {
     const dispatch = useDispatch()
     const [Submited, setSubmited] = useState(false);
     const isPackData = useSelector((state) => state.Pack.dataExist);
+    const PackData = useSelector((state) => state.Pack.data);
 
     useEffect(() => {
         if (isPackData == false)
@@ -86,10 +87,10 @@ export default function Days() {
             {
                 fromDate && isOffer != null &&
                 <div className='w-full h-full flex flex-col m-auto justify-center'>
-                    <div className="w-full flex justify-center mr-2 ">
-                        <div className="md:flex justify-center items-center gap-10">
+                    <div className="w-full flex justify-center">
+                        <div className="flex justify-center items-center gap-10 w-full">
 
-                            <div className="flex items-center pl-4">
+                            <div className="flex items-center px-2 ">
                                 <input
                                     checked={isOffer}
                                     type="radio"
@@ -101,7 +102,7 @@ export default function Days() {
                                     OFFER for 7 days
                                 </label>
                             </div>
-                            <div className="flex items-center pl-4">
+                            <div className="flex items-center px-2">
                                 <input
                                     checked={!isOffer}
                                     type="radio"
@@ -141,8 +142,8 @@ export default function Days() {
             }
             <div className="w-full flex bg-white pt-3 pb-[.6rem] text-black sticky bottom-0 justify-between">
                 <Link
-                    href="/Hostel"
-                    className="w-max mx-2 px-4 py-2 bg-inherit hover:bg-gray-200 rounded-md text-black border px-2 flex gap-1 items-center cursor-pointer"
+                    href={PackData.with_hosting === '1' ? "/Hostel" : "/Packs"}
+                    className="w-max mx-2 px-4 py-2 bg-inherit hover:bg-gray-200 rounded-md text-black border flex gap-1 items-center cursor-pointer"
                 >
                     <span className=' rotate-180'><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512"><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" /></svg></span>
                     <span>Prev</span>
@@ -154,8 +155,6 @@ export default function Days() {
                     </div>
                 </Link>
             </div>
-
-
         </div>
     );
 }
