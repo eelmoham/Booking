@@ -119,7 +119,16 @@ export default function Days() {
                     <div className="w-full justify-center flex items-center">
                         <div className=''>
                             {/* {DaysInfo.data.from} */}
-                            <DatePicker name="FROM" seter={setFromDate} defaultDate={fromDate} />
+                            <DatePicker seter={setFromDate} defaultDate={fromDate} />
+                            {/* <div class="relative">
+                                <label class="text-[12px] font-bold mb-2">FROM</label>
+                                <div class="absolute inset-y-0 top-[22px] left-0 flex items-center pl-3 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" data-darkreader-inline-fill="" >
+                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"></path>
+                                    </svg>
+                                </div>
+                                <input  name="start" id="start" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full pl-10 p-2.5 datepicker-input" placeholder="Select date start"/>
+                            </div> */}
                         </div>
                         <span className="mx-4 text-gray-500">to</span>
                         {
@@ -134,7 +143,8 @@ export default function Days() {
                                 </div>
                                 :
                                 <div className=''>
-                                    <DatePicker name="TO" seter={setToDate} defaultDate={toDate} />
+                                    <DatePicker seter={setToDate} defaultDate={toDate} />
+
                                 </div>
                         }
                     </div>

@@ -1,36 +1,42 @@
 'use client';
 import Datepicker from "tailwind-datepicker-react"
 import { useEffect, useState } from 'react';
+import "./DatePicker.css"
 
-const DatePicker = ({ name, seter, defaultDate }) => {
-
+const DatePicker = ({seter, defaultDate }) => {
+    const [prevHidden, setPrevHidden] = useState(false)
     const options = {
         title: "",
-        autoHide: true,
+        autoHide: false,
         todayBtn: false,
         clearBtn: false,
         maxDate: new Date("01/01/2030"),
-        minDate: new Date(),
+        minDate: new Date() - 1 * 24 * 60 * 60 * 1000,
         theme: {
             background: "bg-white",
             todayBtn: "",
             clearBtn: "",
             icons: "",
             text: "",
-            disabledText: "",
+            disabledText: ' text-gray-400 opacity-30 cursor-not-allowed',
             input: "",
             inputIcon: "",
             selected: new Date(defaultDate)
         },
-        icons: {
-            prev: () => <span>{'<'}</span>,
-            next: () => <span>{'>'}</span>
-        },
-        datepickerClassNames: "top-12",
+        datepickerClassNames: "",
         defaultDate: new Date(defaultDate),
         language: "en",
 
     };
+    // useEffect(() => {
+    //     if (options.theme.selected.getMonth() === new Date().getMonth()) {
+    //         setPrevHidden(true)
+    //     } else {
+    //         setPrevHidden(false)
+    //     }
+    //     console.log(options.theme.selected.getMonth(), new Date().getMonth())
+    // }, [options.selected])
+
     const [show, setShow] = useState(false)
 
     const handleClose = (state) => {
@@ -41,12 +47,6 @@ const DatePicker = ({ name, seter, defaultDate }) => {
     const handleChange = (selectedDate) => {
         seter(selectedDate)
     }
-
-    // useEffect(() => {
-    //     options.defaultDate = new Date(defaultDate)
-    //     options.theme.selected = new Date(defaultDate)
-    // }, [])
-
     return (
         <div>
             <Datepicker
