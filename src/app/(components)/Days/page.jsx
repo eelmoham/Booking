@@ -8,6 +8,7 @@ import { use, useEffect, useState } from 'react';
 import DatePicker from './DatePicker';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
+import { fr } from 'date-fns/locale';
 
 
 
@@ -44,6 +45,9 @@ export default function Days() {
             setToDate(new Date(fromDate.getTime() + (7 * 24 * 60 * 60 * 1000)))
             setSubmited(true);
             dispatch(setOrder({ from: fromDate.toString(), to: toDate.toString(), offer: isOffer }))
+        }else{
+            if (fromDate >= toDate)
+                setToDate(new Date(new Date(fromDate).getTime() + (1 * 24 * 60 * 60 * 1000)))
         }
     }, [fromDate])
 
@@ -67,7 +71,7 @@ export default function Days() {
         if (toDate && !isOffer && fromDate) {
             if (fromDate > toDate) {
                 setSubmited(false);
-                alert("Please choose a date after the start date");
+                // alert("Please choose a date after the start date");
             }
             else {
                 setSubmited(true);
@@ -78,7 +82,6 @@ export default function Days() {
     }, [toDate, fromDate])
 
     function handleRadioChange(e) {
-        console.log(e.target.value, "<<<");
         setIsOffer(!isOffer);
     };
 
@@ -118,35 +121,15 @@ export default function Days() {
                     </div>
                     <div className="w-full justify-center flex items-center">
                         <div className=''>
-                            {/* {DaysInfo.data.from} */}
                             <DatePicker seter={setFromDate} defaultDate={fromDate} />
-                            {/* <div class="relative">
-                                <label class="text-[12px] font-bold mb-2">FROM</label>
-                                <div class="absolute inset-y-0 top-[22px] left-0 flex items-center pl-3 pointer-events-none">
-                                    <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" data-darkreader-inline-fill="" >
-                                        <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"></path>
-                                    </svg>
-                                </div>
-                                <input  name="start" id="start" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full pl-10 p-2.5 datepicker-input" placeholder="Select date start"/>
-                            </div> */}
+
                         </div>
                         <span className="mx-4 text-gray-500">to</span>
-                        {
-                            isOffer ?
-                                <div className='flex gap-1 items-center'>
-                                    <div className=' opacity-40 border py-2 px-1 pr-9 flex gap-3 items-center rounded-lg justify-between bg-[#f9fafb]'>
-                                        <svg aria-hidden="true" className="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd"></path></svg>
-                                        <span className=' text-sm text-gray-800'>
-                                            {toDate.toDateString()}
-                                        </span>
-                                    </div>
-                                </div>
-                                :
-                                <div className=''>
-                                    <DatePicker seter={setToDate} defaultDate={toDate} />
 
-                                </div>
-                        }
+                        <div className=''>
+                            <DatePicker seter={setToDate} defaultDate={toDate} withFrom={fromDate} disabled={isOffer ? true : false} />
+
+                        </div>
                     </div>
                 </div>
             }
