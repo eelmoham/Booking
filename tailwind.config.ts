@@ -18,6 +18,7 @@ const config: Config = {
     extend: {
       screens: {
         'mdh': { 'raw': '(max-height: 1050px)' },
+        'sx': { 'raw': '(max-width: 450px)' },
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
