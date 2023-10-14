@@ -11,6 +11,7 @@ import { setOrder } from "../Shared/info";
 import Loading from "../Loading/page";
 import Priv from "../priv"
 import Back from "../back"
+import { button } from "@nextui-org/react";
 //fin
 
 const CheckOut = () => {
@@ -35,6 +36,29 @@ const CheckOut = () => {
   function validateInput(input, pattern) {
     console.log(input, pattern, pattern.test(input))
     return pattern.test(input);
+  }
+
+  const pushData = () => {
+    if (!validEmail || !validTelephone)
+      alert("Please check your email or telephone")
+    if (fullname !== null && telephone !== null && email !== null && age >= 1 && guests >= 1 && level !== null) {
+      if (validEmail && validTelephone) {
+        const orderData = {
+          fullName: fullname,
+          Telephone: telephone,
+          Email: email,
+          Age: age,
+          Guest: guests,
+          Level: level,
+          service: data.filter((item) => {
+            if (services.includes(item.id)) {
+              return item
+            }
+          })
+        };
+        dispatch(setOrder(orderData));
+      }
+    }
   }
 
   useEffect(() => {
@@ -68,44 +92,44 @@ const CheckOut = () => {
     }
   }, [email, telephone])
 
-  useEffect(() => {
-    if (infoData.dataExist === true) {
-      const orderData = {
-        fullName: infoData.data.fullName,
-        Telephone: infoData.data.Telephone,
-        Email: infoData.data.Email,
-        Age: infoData.data.Age,
-        Guest: infoData.data.Guest,
-        Level: infoData.data.Level,
-        service: data.filter((item) => {
-          if (services.includes(item.id)) {
-            return item
-          }
-        })
-      };
-      if (validEmail && validTelephone) {
-        dispatch(setOrder(orderData));
-      }
-    }
-    else if (fullname !== null && telephone !== null && email !== null && age >= 1 && guests >= 1 && level !== null && infoData.dataExist === false) {
-      if (validEmail && validTelephone) {
-        const orderData = {
-          fullName: fullname,
-          Telephone: telephone,
-          Email: email,
-          Age: age,
-          Guest: guests,
-          Level: level,
-          service: data.filter((item) => {
-            if (services.includes(item.id)) {
-              return item
-            }
-          })
-        };
-        dispatch(setOrder(orderData));
-      }
-    }
-  }, [services, fullname, telephone, email, guests, level, age]);
+  // useEffect(() => {
+  //   if (infoData.dataExist === true) {
+  //     const orderData = {
+  //       fullName: infoData.data.fullName,
+  //       Telephone: infoData.data.Telephone,
+  //       Email: infoData.data.Email,
+  //       Age: infoData.data.Age,
+  //       Guest: infoData.data.Guest,
+  //       Level: infoData.data.Level,
+  //       service: data.filter((item) => {
+  //         if (services.includes(item.id)) {
+  //           return item
+  //         }
+  //       })
+  //     };
+  //     if (validEmail && validTelephone) {
+  //       dispatch(setOrder(orderData));
+  //     }
+  //   }
+  //   else if (fullname !== null && telephone !== null && email !== null && age >= 1 && guests >= 1 && level !== null && infoData.dataExist === false) {
+  //     if (validEmail && validTelephone) {
+  //       const orderData = {
+  //         fullName: fullname,
+  //         Telephone: telephone,
+  //         Email: email,
+  //         Age: age,
+  //         Guest: guests,
+  //         Level: level,
+  //         service: data.filter((item) => {
+  //           if (services.includes(item.id)) {
+  //             return item
+  //           }
+  //         })
+  //       };
+  //       dispatch(setOrder(orderData));
+  //     }
+  //   }
+  // }, [services, fullname, telephone, email, guests, level, age]);
 
   useEffect(() => {
     if (isPackData == false)
@@ -153,7 +177,7 @@ const CheckOut = () => {
     <div className="w-full flex flex-col m-auto h-full ">
       <div className="relative w-full h-full overflow-auto">
         <div className="w-full flex flex-row flex-wrap justify-center p-4 ">
-          
+
           <form action="" className="w-full px-4">
             <div className="grid md:grid-cols-2 md:gap-6">
               <div className="relative z-0 w-full mb-6 group">
@@ -224,7 +248,7 @@ const CheckOut = () => {
       </div>
       <div className="w-full flex bg-white pt-3 pb-[.6rem] text-black sticky bottom-0 justify-between">
         <Priv link="/Days" />
-        <Back link="/facture" setHidden={setHidden} Submited={fullname && telephone && email && age && validEmail && validTelephone} />
+        <Back link="/facture" setHidden={setHidden} Submited={fullname && telephone && email && age && validEmail && validTelephone} pushData={pushData} />
       </div>
     </div>
   );

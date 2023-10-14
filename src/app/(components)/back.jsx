@@ -1,11 +1,13 @@
 import Link from "next/link";
 
-const Back = ({ link, Submited = true, setHidden = false }) => {
+const Back = ({ link, Submited = true, setHidden = false, pushData }) => {
+  console.log(Submited)
     return (
       <Link className={Submited ? "p-2 mx-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-400" : " pointer-events-none opacity-30 p-2 mx-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-400"}
-        href={link}
+        href={Submited? link : "#"}
         onClick={()=> {
-          setHidden != false && setHidden(false)
+          Submited && setHidden != false && setHidden(false)
+          pushData && pushData()
         }}
       >
           <div className="flex gap-1 items-center px-2">
