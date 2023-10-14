@@ -37,8 +37,6 @@ export default function RootLayout({ children }) {
                                 <div className=' overflow-auto w-full h-full flex flex-col bg-[#f8faf5]'>
                                         {children}
                                 </div>
-
-                                {/* <Pagination Pathname={Pathname} /> */}
                             </div>
                         </div>
                     </main>

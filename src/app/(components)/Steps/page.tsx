@@ -13,7 +13,10 @@ const Steps = () => {
     const DaysExist = useSelector((state: RootState) => state.Days.dataExist)
     const InfoExist = useSelector((state: RootState) => state.Info.dataExist)
     return (
-        <div className="overflow-auto rounded-lg w-[20%] md:w-[350px] flex justify-center items-center bg-[#000000] p-1">
+        <div className="overflow-auto rounded-lg w-[20%] md:w-[350px] flex flex-col justify-center items-center bg-[#0c354d] p-1">
+            <div className="flex justify-center items-center pt-2">
+                <img src="/logo-light.png" className="w-[60%]"/>
+            </div>
             <div className="flex flex-col my-auto">
                 <Link
                     href='#'
