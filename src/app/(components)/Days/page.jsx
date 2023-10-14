@@ -101,7 +101,7 @@ export default function Days() {
                                         name="offers"
                                         value="true"
                                         onChange={(e) => handleRadioChange(e)}
-                                        id="offer" className="w-4 h-4 text-green-400 bg-white border-gray-300 focus:ring-green-500 dark:focus:ring-green-400 focus:ring-2" />
+                                        id="offer" className="w-4 h-4 text-green-400 bg-white border-gray-300 focus:ring-green-500 focus:ring-2" />
                                     <label className=" bg-green-100 text-green-800 text-xs font-medium mx-2 px-2.5 py-0.5 rounded-full" htmlFor="offer">
                                         OFFER (7 days)
                                     </label>

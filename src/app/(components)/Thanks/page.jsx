@@ -21,10 +21,10 @@ const Thanks = () => {
                 <div className="text-center">
                     <h3 className="md:text-2xl text-base text-gray-900 font-semibold text-center">Booking Done!</h3>
                     <p className="text-gray-600 my-2">Thank you for Choosing TAYYURT SURF.</p>
-                    <p>
+                    <p className=" text-black">
                         Our team is diligently working on processing your booking. We will review the details and contact you shortly to confirm your reservation and provide any additional information you may need.
                     </p>
-                    <p className="mt-2 text-xs opacity-40"> Have a great day!  </p>
+                    <p className="mt-2 text-xs opacity-40 text-black"> Have a great day!  </p>
                     <div className="py-10 text-center">
                         <a href="https://tayyurt-surf.com/" className="text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
                             GO BACK
