@@ -11,7 +11,6 @@ import { setOrder } from "../Shared/info";
 import Loading from "../Loading/page";
 import Priv from "../priv"
 import Back from "../back"
-import { set } from "date-fns";
 //fin
 
 const CheckOut = () => {
@@ -154,6 +153,7 @@ const CheckOut = () => {
     <div className="w-full flex flex-col m-auto h-full ">
       <div className="relative w-full h-full overflow-auto">
         <div className="w-full flex flex-row flex-wrap justify-center p-4 ">
+          
           <form action="" className="w-full px-4">
             <div className="grid md:grid-cols-2 md:gap-6">
               <div className="relative z-0 w-full mb-6 group">
