@@ -32,9 +32,9 @@ const CardHostel: React.FC<Hostel> = ({ id, title, short_description, descriptio
         siter(false);
     }
     return (
-        <div>
-            <Card className="py-4 my-2 sm:mx-2 max-w-[300px] mx-auto ">
-                <CardHeader className="   overflow-visible">
+        <div className="tester">
+            <Card className="my-2 sm:mx-2 max-w-[300px] mx-auto pt-0 pb-2">
+                <CardHeader className="overflow-visible">
                     <Image
                         alt="Card background"
                         className="object-cover rounded-xl"
@@ -42,7 +42,7 @@ const CardHostel: React.FC<Hostel> = ({ id, title, short_description, descriptio
                         width={"100%"}
                     />
                 </CardHeader>
-                <CardBody className="flex flex-col w-full items-start">
+                <CardBody className="flex flex-col w-full items-start py-0">
                     <p className="text-tiny uppercase font-bold ">{title}</p>
                     <small className="text-default-500">{short_description}</small>
                 </CardBody>

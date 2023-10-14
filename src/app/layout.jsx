@@ -6,10 +6,10 @@ import { store } from './store'
 import { Provider } from 'react-redux'
 import { usePathname } from 'next/navigation';
 var etapsData = {
-    "Packs": "Pickup a pack",
     "": "Pickup a pack",
+    "Packs": "Pickup a pack",
     "Hostel": "Choose a room",
-    "Days": "Select Date",
+    "Days": "Select period",
     "CheckOut": "Your informations",
     "facture": "Confirmation",
     "more": ""

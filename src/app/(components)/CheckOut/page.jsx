@@ -9,7 +9,8 @@ import Service from "./service";
 import { useSelector, useDispatch } from 'react-redux'
 import { setOrder } from "../Shared/info";
 import Loading from "../Loading/page";
-import Link from "next/link";
+import Priv from "../priv"
+import Back from "../back"
 //fin
 
 const CheckOut = () => {
@@ -23,11 +24,21 @@ const CheckOut = () => {
   const [age, setAge] = useState(18);
   const [guests, setGuests] = useState(1);
   const [level, setLevel] = useState('Beginner');
-  const [services, setServices] = useState(infoData.dataExist ? infoData.data.service.map((item) => item.id) : []);
+  const [services, setServices] = useState([]);
   const isPackData = useSelector((state) => state.Pack.dataExist);
   const [hidden, setHidden] = useState(true);
 
-
+  useEffect(() => {
+    if (infoData.dataExist == true) {
+      setFullname(infoData.data.fullName)
+      setTelephone(infoData.data.Telephone)
+      setEmail(infoData.data.Email)
+      setAge(infoData.data.Age)
+      setGuests(infoData.data.Guest)
+      setLevel(infoData.data.Level)
+      setServices(infoData.data.service.map((item) => item.id))
+    }
+  }, [])
 
   useEffect(() => {
     if (infoData.dataExist === true) {
@@ -113,16 +124,16 @@ const CheckOut = () => {
           <form action="" className="w-full px-4">
             <div className="grid md:grid-cols-2 md:gap-6">
               <div className="relative z-0 w-full mb-6 group">
-                <Input value={infoData.data.fullName} label='Fullname' type='text' id='fullname' placeholder='Type your fullname' required={true} seter={setFullname} />
+                <Input value={fullname} label='Fullname' type='text' id='fullname' placeholder='Type your fullname' required={true} seter={setFullname} />
 
               </div>
               <div className="relative z-0 w-full mb-6 group">
-                <Input value={infoData.data.Telephone} label='Telephone' type='text' id='telephone' placeholder='+xxxxxxxxxxxx' required={true} seter={setTelephone} />
+                <Input value={telephone} label='Telephone' type='text' id='telephone' placeholder='+xxxxxxxxxxxx' required={true} seter={setTelephone} />
               </div>
             </div>
             <div className="grid md:grid-cols-2 md:gap-6">
               <div className="relative z-0 w-full mb-6 group">
-                <Input value={infoData.data.Email} label='Address Email' type='text' id='address' placeholder='Type your address' required={true} seter={setEmail} />
+                <Input value={email} label='Address Email' type='text' id='address' placeholder='Type your address' required={true} seter={setEmail} />
               </div>
               <div className="relative z-0 w-full mb-6 group">
                 <label
@@ -131,15 +142,15 @@ const CheckOut = () => {
                 >
                   Select your level
                 </label>
-                <Select value={infoData.data.Level} state={setLevel} id='level' />
+                <Select value={level} state={setLevel} id='level' />
               </div>
             </div>
             <div className="grid md:grid-cols-2 md:gap-6">
               <div className="relative z-0 w-full mb-6 group">
-                <Input value={infoData.data.Age} label='Age' type='number' id='age' placeholder='18' required={true} seter={setAge} />
+                <Input value={age} label='Age' type='number' id='age' placeholder='18' required={true} seter={setAge} />
               </div>
               <div className="relative z-0 w-full mb-6 group">
-                <Input value={infoData.data.Guest} label='Guests' type='number' id='Guests' placeholder='2' required={true} seter={setGuests} />
+                <Input value={guests} label='Guests' type='number' id='Guests' placeholder='2' required={true} seter={setGuests} />
               </div>
             </div>
           </form>
@@ -179,22 +190,8 @@ const CheckOut = () => {
         <Loading hidden={hidden} />
       </div>
       <div className="w-full flex bg-white pt-3 pb-[.6rem] text-black sticky bottom-0 justify-between">
-        <Link
-          href="/Days"
-          className="w-max mx-2 px-4 py-2 bg-inherit hover:bg-gray-200 rounded-md text-black border flex gap-1 items-center cursor-pointer"
-        >
-          <span className=' rotate-180'><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512"><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" /></svg></span>
-          <span>Prev</span>
-        </Link>
-        <Link
-          onClick={() => setHidden(false)}
-          href='/facture'
-          className={infoData.data.fullName ? " bottom-1 right-1 bg-green-500 text-white hover:bg-green-400 px-4 py-2 rounded-lg cursor-pointer" : "absolute bottom-1 right-1 bg-green-500 text-white hover:bg-green-400 px-4 py-2 rounded-lg opacity-25 pointer-events-none"}>
-          <div className="flex gap-1 items-center px-2">
-            <span>Next</span>
-            <svg xmlns="http://www.w3.org/2000/svg" height="1em" fill='white' className='text-white' viewBox="0 0 320 512"> <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" /></svg>
-          </div>
-        </Link>
+        <Priv link="/Days"/>
+        <Back link="/facture" setHidden={setHidden} Submited={fullname && telephone && email && age}/>
       </div>
     </div>
   );

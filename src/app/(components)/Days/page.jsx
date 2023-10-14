@@ -4,11 +4,11 @@
 import { useDispatch } from 'react-redux'
 import { setOrder } from '../Shared/Days';
 // fin
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import DatePicker from './DatePicker';
 import { useSelector } from 'react-redux';
-import Link from 'next/link';
-import { fr } from 'date-fns/locale';
+import Priv from "../priv"
+import Back from "../back"
 
 
 
@@ -90,8 +90,8 @@ export default function Days() {
             {
                 fromDate && isOffer != null &&
                 <div className='w-full h-full flex flex-col m-auto justify-center'>
-                    <div className="w-full flex justify-center">
-                        <div className="flex justify-center items-center gap-10 w-full">
+                    <div className="w-full flex justify-center pb-2">
+                        <div className="flex justify-center items-center gap-5 w-full">
 
                             <div className="flex items-center px-2 ">
                                 <input
@@ -100,7 +100,7 @@ export default function Days() {
                                     name="offers"
                                     value="true"
                                     onChange={(e) => handleRadioChange(e)}
-                                    id="offer" className="w-4 h-4 text-green-400 bg-gray-100 border-gray-300 focus:ring-green-500 dark:focus:ring-green-400 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                    id="offer" className="w-4 h-4 text-green-400 bg-white border-gray-300 focus:ring-green-500 dark:focus:ring-green-400 focus:ring-2" />
                                 <label className=" bg-green-100 text-green-800 text-xs font-medium mx-2 px-2.5 py-0.5 rounded-full" htmlFor="offer">
                                     OFFER for 7 days
                                 </label>
@@ -112,8 +112,8 @@ export default function Days() {
                                     name="offers"
                                     value="false"
                                     onChange={(e) => handleRadioChange(e)}
-                                    id="custom" className="w-4 h-4 text-green-400 bg-gray-100 border-gray-300 focus:ring-green-500 dark:focus:ring-green-400 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                                <label htmlFor="custom" className="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                    id="custom" className="w-4 h-4 text-green-400 bg-green-50 border-green-300 focus:ring-green-500 focus:ring-2" />
+                                <label htmlFor="custom" className="w-full py-4 ml-2 text-sm font-normal text-gray-900">
                                     Custom dates
                                 </label>
                             </div>
@@ -134,19 +134,8 @@ export default function Days() {
                 </div>
             }
             <div className="w-full flex bg-white pt-3 pb-[.6rem] text-black sticky bottom-0 justify-between">
-                <Link
-                    href={PackData.with_hosting === '1' ? "/Hostel" : "/Packs"}
-                    className="w-max mx-2 px-4 py-2 bg-inherit hover:bg-gray-200 rounded-md text-black border flex gap-1 items-center cursor-pointer"
-                >
-                    <span className=' rotate-180'><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512"><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" /></svg></span>
-                    <span>Prev</span>
-                </Link>
-                <Link className={Submited ? " bottom-1 right-1 p-2 mx-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-400" : " pointer-events-none opacity-30 absolute bottom-1 right-1 p-2 mx-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-400"} href="/CheckOut">
-                    <div className="flex gap-1 items-center px-2">
-                        <span>Next</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" height="1em" fill='white' className='text-white' viewBox="0 0 320 512"> <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" /></svg>
-                    </div>
-                </Link>
+                <Priv link={PackData.with_hosting === '1' ? "/Hostel" : "/Packs"}/>
+                <Back link="/CheckOut"/>
             </div>
         </div>
     );
