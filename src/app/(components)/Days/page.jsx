@@ -86,47 +86,50 @@ export default function Days() {
     };
 
     return (
-        <div className=" flex flex-col justify-between items-center w-full h-full m-auto bg-inherit">
+        <div className="overflow-hidden flex h-full w-full flex-row flex-wrap justify-center items-center mt-1">
             {
                 fromDate && isOffer != null &&
                 <div className='w-full h-full flex flex-col m-auto justify-center'>
                     <div className="w-full flex justify-center pb-2">
-                        <div className="flex justify-center items-center gap-5 w-full">
+                        <div className="flex justify-center items-center grap-0 md:gap-5 w-full">
 
-                            <div className="flex items-center px-2 ">
-                                <input
-                                    checked={isOffer}
-                                    type="radio"
-                                    name="offers"
-                                    value="true"
-                                    onChange={(e) => handleRadioChange(e)}
-                                    id="offer" className="w-4 h-4 text-green-400 bg-white border-gray-300 focus:ring-green-500 dark:focus:ring-green-400 focus:ring-2" />
-                                <label className=" bg-green-100 text-green-800 text-xs font-medium mx-2 px-2.5 py-0.5 rounded-full" htmlFor="offer">
-                                    OFFER for 7 days
-                                </label>
+                            <div className='flex sx:block sx:flex-wrap sx:pb-4'>
+                                <div className="flex items-center px-2 ">
+                                    <input
+                                        checked={isOffer}
+                                        type="radio"
+                                        name="offers"
+                                        value="true"
+                                        onChange={(e) => handleRadioChange(e)}
+                                        id="offer" className="w-4 h-4 text-green-400 bg-white border-gray-300 focus:ring-green-500 dark:focus:ring-green-400 focus:ring-2" />
+                                    <label className=" bg-green-100 text-green-800 text-xs font-medium mx-2 px-2.5 py-0.5 rounded-full" htmlFor="offer">
+                                        OFFER (7 days)
+                                    </label>
+                                </div>
+                                <div className="flex items-center px-2 pt-2">
+                                    <input
+                                        checked={!isOffer}
+                                        type="radio"
+                                        name="offers"
+                                        value="false"
+                                        onChange={(e) => handleRadioChange(e)}
+                                        id="custom" className="w-4 h-4 text-green-400 bg-green-50 border-green-300 focus:ring-green-500 focus:ring-2" />
+                                    <label className="  text-black text-xs font-medium ml-2 px-2.5 py-0.5 rounded-full" htmlFor="custom">
+                                        Custom dates
+                                    </label>
+                                </div>
                             </div>
-                            <div className="flex items-center px-2">
-                                <input
-                                    checked={!isOffer}
-                                    type="radio"
-                                    name="offers"
-                                    value="false"
-                                    onChange={(e) => handleRadioChange(e)}
-                                    id="custom" className="w-4 h-4 text-green-400 bg-green-50 border-green-300 focus:ring-green-500 focus:ring-2" />
-                                <label htmlFor="custom" className="w-full py-4 ml-2 text-sm font-normal text-gray-900">
-                                    Custom dates
-                                </label>
-                            </div>
+                            
                         </div>
                     </div>
-                    <div className="w-full justify-center flex items-center">
-                        <div className=''>
+                    <div className="flex items-center mb-6 px-3 justify-center flex-wrap">
+                        <div className='relative w-full sm:w-auto'>
                             <DatePicker seter={setFromDate} defaultDate={fromDate} />
-
                         </div>
-                        <span className="mx-4 text-gray-500">to</span>
-
-                        <div className=''>
+                        <div className=" mx-4 text-gray-500 w-full py-2 sm:w-auto text-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 fill-green-400" viewBox="0 0 512 512"><defs></defs><path d="M0 256c0-6.7 2.8-13 7.7-17.6l112-104c7-6.5 17.2-8.2 25.9-4.4s14.4 12.5 14.4 22l0 56 96 0 0 96-96 0 0 56c0 9.5-5.7 18.2-14.4 22s-18.9 2.1-25.9-4.4l-112-104C2.8 269 0 262.7 0 256z"></path><path className="opacity-[.4]" d="M512 256c0-6.7-2.8-13-7.7-17.6l-112-104c-7-6.5-17.2-8.2-25.9-4.4s-14.4 12.5-14.4 22l0 56-96 0 0 96 96 0 0 56c0 9.5 5.7 18.2 14.4 22s18.9 2.1 25.9-4.4l112-104c4.9-4.5 7.7-10.9 7.7-17.6z"></path></svg>
+                            </div>
+                        <div className='relative w-full sm:w-auto'>
                             <DatePicker seter={setToDate} defaultDate={toDate} withFrom={fromDate} disabled={isOffer ? true : false} />
 
                         </div>

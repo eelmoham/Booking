@@ -24,7 +24,7 @@ export default function DatePicker({seter, defaultDate, withFrom = null, disable
           variant={"outline"}
           disabled={disabled}
           className={cn(
-            "w-[280px] justify-start text-left font-normal",
+            "w-full justify-start text-left font-normal",
             !defaultDate && "text-muted-foreground"
           )}
           

@@ -13,9 +13,10 @@ const Steps = () => {
     const DaysExist = useSelector((state: RootState) => state.Days.dataExist)
     const InfoExist = useSelector((state: RootState) => state.Info.dataExist)
     return (
-        <div className="overflow-auto rounded-lg w-[20%] md:w-[350px] flex flex-col justify-center items-center bg-[#0c354d] p-1">
+        <div className="overflow-auto rounded-lg min-w-[50px] w-[50px] md:w-[350px] flex flex-col justify-center items-center bg-[#0c354d] p-1">
             <div className="flex justify-center items-center pt-2">
-                <img src="/logo-light.png" className="w-[60%]"/>
+                <img src="/logo-light.png" className="w-[60%] hidden md:flex"/>
+                <img src="/logo-192x192.png" className="w-[80%] max-w-[60px] md:hidden"/>
             </div>
             <div className="flex flex-col my-auto">
                 <Link
@@ -23,7 +24,6 @@ const Steps = () => {
                     className=" flex gap-3 justify-between  md:text-sm text-xs">
                     <div className=" text-white hidden md:flex md:flex-col items-center w-full overflow-hidden ">
                         <h3 className="font-medium leading-tight pt-[.4rem]">Choosing Pack</h3>
-                        
                     </div>
                     <div className=" flex flex-col h-full">
                         {
