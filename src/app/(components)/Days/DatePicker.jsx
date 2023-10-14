@@ -33,7 +33,7 @@ export default function DatePicker({seter, defaultDate, withFrom = null, disable
           {defaultDate ? format(new Date(defaultDate), "yyyy-MM-dd") : <span>Pick a date</span>}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className={cn("w-auto p-0")}>
+      <PopoverContent className={cn("w-auto p-0 text-black")}>
         <Calendar
           disabled={(date) =>
             {

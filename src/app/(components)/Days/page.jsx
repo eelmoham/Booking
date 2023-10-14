@@ -123,13 +123,13 @@ export default function Days() {
                         </div>
                     </div>
                     <div className="flex items-center mb-6 px-3 justify-center flex-wrap">
-                        <div className='relative w-full sm:w-auto'>
+                        <div className='relative w-full sm:w-auto text-black'>
                             <DatePicker seter={setFromDate} defaultDate={fromDate} />
                         </div>
                         <div className=" mx-4 text-gray-500 w-full py-2 sm:w-auto text-center">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 fill-green-400" viewBox="0 0 512 512"><defs></defs><path d="M0 256c0-6.7 2.8-13 7.7-17.6l112-104c7-6.5 17.2-8.2 25.9-4.4s14.4 12.5 14.4 22l0 56 96 0 0 96-96 0 0 56c0 9.5-5.7 18.2-14.4 22s-18.9 2.1-25.9-4.4l-112-104C2.8 269 0 262.7 0 256z"></path><path className="opacity-[.4]" d="M512 256c0-6.7-2.8-13-7.7-17.6l-112-104c-7-6.5-17.2-8.2-25.9-4.4s-14.4 12.5-14.4 22l0 56-96 0 0 96 96 0 0 56c0 9.5 5.7 18.2 14.4 22s18.9 2.1 25.9-4.4l112-104c4.9-4.5 7.7-10.9 7.7-17.6z"></path></svg>
                             </div>
-                        <div className='relative w-full sm:w-auto'>
+                        <div className='relative w-full sm:w-auto text-black'>
                             <DatePicker seter={setToDate} defaultDate={toDate} withFrom={fromDate} disabled={isOffer ? true : false} />
 
                         </div>
