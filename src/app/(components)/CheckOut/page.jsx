@@ -11,6 +11,7 @@ import { setOrder } from "../Shared/info";
 import Loading from "../Loading/page";
 import Priv from "../priv"
 import Back from "../back"
+import { set } from "date-fns";
 //fin
 
 const CheckOut = () => {
@@ -28,6 +29,15 @@ const CheckOut = () => {
   const isPackData = useSelector((state) => state.Pack.dataExist);
   const [hidden, setHidden] = useState(true);
 
+  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const phonePattern = /(?:([+]\d{1,4})[-.\s]?)?(?:[(](\d{1,3})[)][-.\s]?)?(\d{1,4})[-.\s]?(\d{1,4})[-.\s]?(\d{1,9})/;
+  const [validEmail, setValidEmail] = useState(true);
+  const [validTelephone, setValidTelephone] = useState(true);
+  function validateInput(input, pattern) {
+    console.log(input, pattern, pattern.test(input))
+    return pattern.test(input);
+  }
+
   useEffect(() => {
     if (infoData.dataExist == true) {
       setFullname(infoData.data.fullName)
@@ -39,6 +49,25 @@ const CheckOut = () => {
       setServices(infoData.data.service.map((item) => item.id))
     }
   }, [])
+
+  useEffect(() => {
+    if (email != null) {
+      if (validateInput(email, emailPattern))
+        setValidEmail(true)
+      else {
+        if (!validateInput(email, emailPattern))
+          setValidEmail(false)
+      }
+    }
+    if (telephone != null) {
+      if (validateInput(telephone, phonePattern))
+        setValidTelephone(true)
+      else {
+        if (!validateInput(telephone, phonePattern))
+          setValidTelephone(false)
+      }
+    }
+  }, [email, telephone])
 
   useEffect(() => {
     if (infoData.dataExist === true) {
@@ -55,23 +84,27 @@ const CheckOut = () => {
           }
         })
       };
-      dispatch(setOrder(orderData));
+      if (validEmail && validTelephone) {
+        dispatch(setOrder(orderData));
+      }
     }
     else if (fullname !== null && telephone !== null && email !== null && age >= 1 && guests >= 1 && level !== null && infoData.dataExist === false) {
-      const orderData = {
-        fullName: fullname,
-        Telephone: telephone,
-        Email: email,
-        Age: age,
-        Guest: guests,
-        Level: level,
-        service: data.filter((item) => {
-          if (services.includes(item.id)) {
-            return item
-          }
-        })
-      };
-      dispatch(setOrder(orderData));
+      if (validEmail && validTelephone) {
+        const orderData = {
+          fullName: fullname,
+          Telephone: telephone,
+          Email: email,
+          Age: age,
+          Guest: guests,
+          Level: level,
+          service: data.filter((item) => {
+            if (services.includes(item.id)) {
+              return item
+            }
+          })
+        };
+        dispatch(setOrder(orderData));
+      }
     }
   }, [services, fullname, telephone, email, guests, level, age]);
 
@@ -124,16 +157,16 @@ const CheckOut = () => {
           <form action="" className="w-full px-4">
             <div className="grid md:grid-cols-2 md:gap-6">
               <div className="relative z-0 w-full mb-6 group">
-                <Input value={fullname} label='Fullname' type='text' id='fullname' placeholder='Type your fullname' required={true} seter={setFullname} />
+                <Input validator={true} value={fullname} label='Fullname' type='text' id='fullname' placeholder='Type your fullname' required={true} seter={setFullname} />
 
               </div>
               <div className="relative z-0 w-full mb-6 group">
-                <Input value={telephone} label='Telephone' type='text' id='telephone' placeholder='+xxxxxxxxxxxx' required={true} seter={setTelephone} />
+                <Input validator={validTelephone} value={telephone} label='Telephone' type='text' id='telephone' placeholder='+xxxxxxxxxxxx' required={true} seter={setTelephone} />
               </div>
             </div>
             <div className="grid md:grid-cols-2 md:gap-6">
               <div className="relative z-0 w-full mb-6 group">
-                <Input value={email} label='Address Email' type='text' id='address' placeholder='Type your address' required={true} seter={setEmail} />
+                <Input validator={validEmail} value={email} label='Address Email' type='text' id='address' placeholder='Type your address' required={true} seter={setEmail} />
               </div>
               <div className="relative z-0 w-full mb-6 group">
                 <label
@@ -147,10 +180,10 @@ const CheckOut = () => {
             </div>
             <div className="grid md:grid-cols-2 md:gap-6">
               <div className="relative z-0 w-full mb-6 group">
-                <Input value={age} label='Age' type='number' id='age' placeholder='18' required={true} seter={setAge} />
+                <Input validator={true} value={age} label='Age' type='number' id='age' placeholder='18' required={true} seter={setAge} />
               </div>
               <div className="relative z-0 w-full mb-6 group">
-                <Input value={guests} label='Guests' type='number' id='Guests' placeholder='2' required={true} seter={setGuests} />
+                <Input validator={true} value={guests} label='Guests' type='number' id='Guests' placeholder='2' required={true} seter={setGuests} />
               </div>
             </div>
           </form>
@@ -190,8 +223,8 @@ const CheckOut = () => {
         <Loading hidden={hidden} />
       </div>
       <div className="w-full flex bg-white pt-3 pb-[.6rem] text-black sticky bottom-0 justify-between">
-        <Priv link="/Days"/>
-        <Back link="/facture" setHidden={setHidden} Submited={fullname && telephone && email && age}/>
+        <Priv link="/Days" />
+        <Back link="/facture" setHidden={setHidden} Submited={fullname && telephone && email && age && validEmail && validTelephone} />
       </div>
     </div>
   );

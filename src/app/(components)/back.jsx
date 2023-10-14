@@ -5,7 +5,7 @@ const Back = ({ link, Submited = true, setHidden = false }) => {
       <Link className={Submited ? "p-2 mx-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-400" : " pointer-events-none opacity-30 p-2 mx-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-400"}
         href={link}
         onClick={()=> {
-          setHidden && setHidden(false)
+          setHidden != false && setHidden(false)
         }}
       >
           <div className="flex gap-1 items-center px-2">
