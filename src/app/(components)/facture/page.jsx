@@ -91,7 +91,6 @@ const Facture = () => {
           </div>
         </div>
 
-        {/* info of Client from serviceData */}
         <div className="flex flex-col">
           <div className="relative flex items-center ">
             <div className="w-2 h-2 rounded-full bg-slate-700 absolute left-[-4px]"></div>
