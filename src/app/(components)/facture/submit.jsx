@@ -36,7 +36,6 @@ const Submit = ({ days, hostel, info, packs, siter }) => {
                     axios.post('https://booking.tayyurt-surf.com/api/v1/bookings', order)
                         .then(res => {
                         }).catch(error => {
-                            console.error("Error:", error);
                         });
 
                 }}

@@ -1,10 +1,9 @@
 'use client';
-// import { RootState } from "@/app/store"; needed for typescript.
+
 import { useSelector } from "react-redux";
 import Submit from './submit';
 import Loading from "../Loading/page";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import Priv from "../priv"
 
 const Facture = () => {
@@ -19,11 +18,8 @@ const Facture = () => {
 
   const [hidden, setHidden] = useState(true);
 
-  isPackDataLoading ? null : location.href = "/Packs";
   const TotalPrice = () => {
     let Total = 0;
-    
-
     if (daysData.offer)
       Total += packData.pack_price
     else
@@ -33,7 +29,6 @@ const Facture = () => {
         Total += daysData.numberOfDays * hostelData.day_price
     }
     Total *= serviceData.Guest
-    //add price of each service
     serviceData.service.map((service) => {
       if (service) {
         Total += service.price;
@@ -43,7 +38,7 @@ const Facture = () => {
   }
 
   useEffect(() => {
-    if (isPackDataLoading == false)
+    if (isPackDataLoading != true) 
       location.href = "/Packs";
   }, [])
 
@@ -67,7 +62,7 @@ const Facture = () => {
         </div>
 
         {
-          packData.with_hosting === '1' ?
+          packData.with_hosting === '1' &&
             <div className="flex flex-col">
               <div className="relative flex items-center ">
                 <div className="w-2 h-2 rounded-full bg-slate-700 absolute left-[-4px]"></div>
@@ -76,11 +71,11 @@ const Facture = () => {
               <div className="flex gap-4 ml-5 text-black">
                 <div>{hostelData.title}</div>
                 {
-                  daysData.offer ? <div className="text-green-500">Included Pack</div> : <div className="text-green-500"> {hostelData.day_price}€/Day/Guest</div>
+                  daysData && daysData.offer ? <div className="text-green-500">Included Pack</div> : <div className="text-green-500"> {hostelData.day_price}€/Day/Guest</div>
                 }
 
               </div>
-            </div> : null
+            </div> 
         }
 
 
@@ -91,7 +86,7 @@ const Facture = () => {
           </div>
           <div className="flex flex-col ml-3">
             <div className="flex">
-              <div className="text-gray-700"> <span className="text-black"> </span> {daysData.from.substring(0, 15)} - <span className="text-black"> </span> {daysData.to.substring(0, 15)}</div>
+              <div className="text-gray-700"> <span className="text-black"> </span> {daysData.from} - <span className="text-black"> </span> {daysData.to}</div>
             </div>
           </div>
         </div>
@@ -142,8 +137,6 @@ const Facture = () => {
                         </div>
                       )
                     }
-                    else
-                      return null;
                   })
                 }
               </div>
@@ -164,7 +157,6 @@ const Facture = () => {
       <div className="w-full flex bg-white pt-3 pb-[.6rem] text-black sticky bottom-0 justify-between items-center">
         <Priv link="/CheckOut"/>
         <div>
-
           <Submit days={daysData} hostel={hostelData} info={serviceData} packs={packData} siter={setHidden} />
         </div>
       </div>

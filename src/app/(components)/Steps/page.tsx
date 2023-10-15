@@ -4,6 +4,7 @@ import Link from "next/link";
 // reduce
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from "@/app/store";
+import Image from "next/image";
 //fin
 
 const Steps = () => {
@@ -15,8 +16,8 @@ const Steps = () => {
     return (
         <div className="overflow-auto rounded-lg min-w-[50px] w-[50px] md:w-[350px] flex flex-col justify-center items-center bg-[#0c354d] p-1">
             <div className="flex justify-center items-center pt-2">
-                <img src="/logo-light.png" className="w-[60%] hidden md:flex"/>
-                <img src="/logo-192x192.png" className="w-[80%] max-w-[60px] md:hidden"/>
+                <Image className="w-[60%] hidden md:flex" src="/logo-light.png" width={100} height={100} alt="logo" />
+                <Image className="w-[80%] max-w-[60px] md:hidden" src="/logo-192x192.png" width={100} height={100} alt="logo" />
             </div>
             <div className="flex flex-col my-auto">
                 <Link
@@ -44,7 +45,7 @@ const Steps = () => {
                 <Link href="#" className=" flex gap-3 justify-between  md:text-sm text-xs">
                     <div className=" text-white hidden md:flex md:flex-col items-center w-full overflow-hidden ">
                         <h3 className="font-medium leading-tight pt-[.4rem]">Choosing Room</h3>
-                        
+
                     </div>
 
                     <div className=" flex flex-col h-full">
@@ -68,7 +69,7 @@ const Steps = () => {
                 <Link href="#" className=" flex gap-3 justify-between  md:text-sm text-xs">
                     <div className=" text-white hidden md:flex md:flex-col items-center w-full overflow-hidden ">
                         <h3 className="font-medium leading-tight pt-[.4rem]">SELECT DATE</h3>
-                        
+
                     </div>
 
                     <div className=" flex flex-col h-full">
@@ -90,8 +91,8 @@ const Steps = () => {
                 </Link>
                 <Link href="#" className=" flex gap-3 justify-between  md:text-sm text-xs">
                     <div className=" text-white hidden md:flex md:flex-col items-center w-full overflow-hidden ">
-                        <h3 className="font-medium leading-tight text-center">YOUR<br/>INFORMATIONS</h3>
-                        
+                        <h3 className="font-medium leading-tight text-center">YOUR<br />INFORMATIONS</h3>
+
                     </div>
                     <div className=" flex flex-col h-full">
                         {
@@ -104,8 +105,8 @@ const Steps = () => {
                                 :
                                 <span className=" flex flex-col items-center justify-center w-8 h-8 bg-gray-200 rounded-full">
                                     <svg xmlns="http://www.w3.org/2000/svg" height=".8em" viewBox="0 0 576 512">
-                                        
-                                    <path d="M528 160V416c0 8.8-7.2 16-16 16H320c0-44.2-35.8-80-80-80H176c-44.2 0-80 35.8-80 80H64c-8.8 0-16-7.2-16-16V160H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM272 256a64 64 0 1 0 -128 0 64 64 0 1 0 128 0zm104-48c-13.3 0-24 10.7-24 24s10.7 24 24 24h80c13.3 0 24-10.7 24-24s-10.7-24-24-24H376zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24h80c13.3 0 24-10.7 24-24s-10.7-24-24-24H376z" /></svg>
+
+                                        <path d="M528 160V416c0 8.8-7.2 16-16 16H320c0-44.2-35.8-80-80-80H176c-44.2 0-80 35.8-80 80H64c-8.8 0-16-7.2-16-16V160H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM272 256a64 64 0 1 0 -128 0 64 64 0 1 0 128 0zm104-48c-13.3 0-24 10.7-24 24s10.7 24 24 24h80c13.3 0 24-10.7 24-24s-10.7-24-24-24H376zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24h80c13.3 0 24-10.7 24-24s-10.7-24-24-24H376z" /></svg>
                                 </span>
                         }
                         {/* <div className=" bg-white bg-opacity-30 w-1 md:h-20 h-10 self-center" ></div> */}
